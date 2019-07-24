@@ -1,16 +1,17 @@
 # Battle-Party-Pacman-Powercookie-Festival
 ## Template
-|Gitmoji|“ü—Í|g—p|
+|Gitmoji|å…¥åŠ›|ä½¿ç”¨æ™‚|
 |:-:|:-:|:-:|
-|:fire:|FfireF|ƒR[ƒh‚âƒtƒ@ƒCƒ‹‚Ìíœ|
-|:bug:|FbugF|ƒoƒO‚ÌC³|
-|:sparkles:|FsparklesF|V‹@”\‚Ì’Ç‰Á|
-|:tada:|FtadaF|‰ŠúƒRƒ~ƒbƒg|
-|:construction:|FconstructionF|is’†‚Ìì‹Æ|
-|:wrench:|FwrenchF|İ’èƒtƒ@ƒCƒ‹‚Ì•ÏX|
-|:poop:|FpoopF|‰ü‘P‚·‚é•K—v‚Ì‚ ‚éˆ«‚¢ƒR[ƒh‚ğ‘‚­
-|:rewind:|FrewindF|•ÏX‚ğŒ³‚É–ß‚·|
-|:truck:|FtruckF|ƒtƒ@ƒCƒ‹‚ÌˆÚ“®‚â–¼‘O‚Ì•ÏX|
+|:fire:|ï¼šfireï¼š|ã‚³ãƒ¼ãƒ‰ã‚„ãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤|
+|:bug:|ï¼šbugï¼š|ãƒã‚°ã®ä¿®æ­£|
+|:sparkles:|ï¼šsparklesï¼š|æ–°æ©Ÿèƒ½ã®è¿½åŠ |
+|:tada:|ï¼štadaï¼š|åˆæœŸã‚³ãƒŸãƒƒãƒˆ|
+|:construction:|ï¼šconstructionï¼š|é€²è¡Œä¸­ã®ä½œæ¥­|
+|:wrench:|ï¼šwrenchï¼š|è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®å¤‰æ›´|
+|:poop:|ï¼špoopï¼š|æ”¹å–„ã™ã‚‹å¿…è¦ã®ã‚ã‚‹æ‚ªã„ã‚³ãƒ¼ãƒ‰ã‚’æ›¸ã
+|:rewind:|ï¼šrewindï¼š|å¤‰æ›´ã‚’å…ƒã«æˆ»ã™|
+|:truck:|ï¼štruckï¼š|ãƒ•ã‚¡ã‚¤ãƒ«ã®ç§»å‹•ã‚„åå‰ã®å¤‰æ›´|
+|:see_no_evil:|ï¼šsee_no_evilï¼š|.gitignoreã‚’è¿½åŠ |
 
 
 
