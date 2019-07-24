@@ -59,6 +59,11 @@ HRESULT DirectX::InitD3Device(HWND hWnd, const TCHAR* FilePath) {
 			return E_FAIL;
 		}
 	}
+
+	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVDESTALPHA);
+
 	return S_OK;
 }
 
