@@ -2,9 +2,9 @@
 #include "Mapchip.h"
 
 Game::SCENE_PAHSE Phase = Game::LOAD;
-
-MapchipLoading Mp;
-DrawMap map;
+//
+//MapchipLoading Mp;
+//DrawMap map;
 
 float pink_PACMAN_tu = 0.0f;
 float pink_PACMAN_tv = 0.0f;
@@ -38,17 +38,17 @@ void Game::Loading() {
 
 	LoadTexture("Pink_PACMAN.png",BLUE_PACMAN);
 	
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Blue_PACMAN.png"), &dx.pTexture[PINK_PACMAN]);
-
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Pink_Ghost.png"), &dx.pTexture[PINK_GHOST]);
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Blue_Ghost.png"), &dx.pTexture[BLUE_GHOST]);
-
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Pink_Gauge.png"), &dx.pTexture[PINK_GAUGE]);
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Blue_Gauge.png"), &dx.pTexture[BLUE_GAUGE]);
-
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("Mess_Width_Ghost.png"), &dx.pTexture[MESS_WIDTH_GHOST]);
-
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("GameBack.png"), &dx.pTexture[BLUE_PACMAN]);
+	LoadTexture("Blue_PACMAN.png",PINK_PACMAN);
+	
+	LoadTexture("Pink_Ghost.png",PINK_GHOST);
+	LoadTexture("Blue_Ghost.png",BLUE_GHOST);
+	
+	LoadTexture("Gauge.png",PINK_GAUGE);
+	LoadTexture("Gauge.png",BLUE_GAUGE);
+	
+	LoadTexture("Mess_Width_Ghost.png",MESS_WIDTH_GHOST);
+	
+	LoadTexture("GameBack.png", BLUE_PACMAN);
 
 	Phase = PROCESSING;
 }
@@ -63,13 +63,13 @@ void Game::Process() {
 		b[i] = a[i];
 	}
 
-	int** c = Mp.mapchip("Test_CSV.csv",15,14,b);
+	/*int** c = Mp.mapchip("Test_CSV.csv",15,14,b);
 
 
 
 	map.DrawMapChip();
 
-	map.tetureprint(c, 15, 14);
+	map.tetureprint(c, 15, 14);*/
 
 
 
@@ -130,8 +130,9 @@ void Game::Process() {
 	Draw(0, 0, 0xffffffff, pink_PACMAN_tu, pink_PACMAN_tv, 200, 200, 0.25f, 1.0f, BLUE_PACMAN);
 	Draw(0,200,0xffffffff,pink_PACMAN_tu,pink_PACMAN_tv,200,200,0.25f,1.0f,PINK_PACMAN);
 
-	Draw(200, 0, 0xffffffff,pink_gauge_tu,0.0f, 400, 200, 0.05f, 1.0f, PINK_GAUGE);
-	Draw(200,200, 0xffffffff,blue_gauge_tu,0.0f, 400, 200, 0.05f, 1.0f, BLUE_GAUGE);
+	//8:1 width:height
+	Draw(200, 0, 0xffffffff,pink_gauge_tu,0.0f,400, 50, 0.05f, 0.5f, PINK_GAUGE);
+	Draw(200,200, 0xffffffff,blue_gauge_tu,0.507f, 400, 50, 0.05f, 0.5f, BLUE_GAUGE);
 	
 	Draw(0, 400, 0xffffffff, 0.0f, 0.0f, 200, 200, 0.125f, 1.0f, PINK_GHOST);
 	Draw(200, 400, 0xffffffff, 0.0f, 0.0f, 200, 200, 0.125f, 1.0f, BLUE_GHOST);
