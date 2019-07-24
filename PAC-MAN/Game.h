@@ -7,7 +7,6 @@
 
 #include <time.h>
 
-MapchipLoading Mp;
 
 class Game {
 public:

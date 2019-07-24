@@ -81,6 +81,24 @@ void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT h
 	dx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, customvertex, sizeof(CustomVertex));
 }
 
+
+void LoadTexture(const char* file_name,int TEX) {
+	
+	D3DXCreateTextureFromFileEx(
+	dx.pD3Device,
+	_T(file_name),
+		0,
+		0,
+		1,0,
+		D3DFMT_UNKNOWN,
+		D3DPOOL_MANAGED,
+		D3DX_DEFAULT,
+		D3DX_DEFAULT,
+		0x0000ff00,
+		nullptr,
+		nullptr,
+		&dx.pTexture[TEX]);
+}
 //
 HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME) {
 	//ウィンドウクラス

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "Mapchip.h"
+#include "Main.h"
 
 int** MapchipLoading::mapchip(const char* filename, int Hrow, int Hcol, int** data) {
 
@@ -37,17 +38,25 @@ int** MapchipLoading::mapchip(const char* filename, int Hrow, int Hcol, int** da
 int MapchipLoading::textureprint(int** F, int s, int d)
 {
 	for (int i = 0; i < s; i++) {
-		printf("\n");
+		
 		for (int j = 0; j < d; j++)
 		{
-			printf("%2d", F[i][j]);
+			
 		}
 	}
 
 	return 0;
 }
 
-DrawMap map;
+
+
+
+
+
+
+
+
+
 
 void DrawMap::DrawMapChip()
 {
@@ -62,30 +71,32 @@ void DrawMap::DrawMapChip()
 			}
 
 			// テクスチャのサイズとマップチップのサイズから横と縦のチップ数を割り出す
-			int width_num = (int)g_TextureList[TextureId::MapChip].m_Width / MAPCHIP_WIDTH;
-			int height_num = (int)g_TextureList[TextureId::MapChip].m_Height / MAPCHIP_HEIGHT;
+			// (int)g_TextureList[TextureId::MapChip].m_Width       テクスチャのwidth
+			//(int)g_TextureList[TextureId::MapChip].m_Height       テクスチャのheight
+			//MAPCHIP_WIDTH                                         マップチップの１つのwidth大きさ
+			//MAPCHIP_HEIGHT                                        マップチップの１つのheight大きさ
+			int width_num = 320 / MAPCHIP_WIDTH;
+			int height_num = 320 / MAPCHIP_HEIGHT;
 
 			// chip_idからチップのテクスチャ座標を割り出す
+			// チップの描画
+			//chip_pos_x                                            左上のtuの位置
+			//chip_pos_y                                            左上のtvの位置
+			//MAPCHIP_WIDTH                                         一マスのwidth大きさ
+			//MAPCHIP_HEIGHT                                        一マスのheight大きさ
 			float chip_pos_x = (float)(chip_id % width_num) * MAPCHIP_WIDTH;
 			float chip_pos_y = (float)(chip_id / height_num) * MAPCHIP_HEIGHT;
 
-			// チップの描画
-			DrawSprite(
-				TextureId::MapChip,
-				D3DXVECTOR2(MAPCHIP_WIDTH * j, MAPCHIP_HEIGHT * i),
-				D3DXVECTOR2(chip_pos_x, chip_pos_y),
-				D3DXVECTOR2(MAPCHIP_WIDTH, MAPCHIP_HEIGHT)
-			);
 		}
 	}
 }
 
 //マップチップ描画
-int tetureprint(int** f, int k, int d) {
+int DrawMap::tetureprint(int** f, int k, int d) {
 	for (int i = 0; i < k; i++) {
 		for (int j = 0; j < d; j++) {
 			//描画
-
+			Draw(0, 0,0xffffffff,0.0f,0.0f,200,200,1.0f,1.0f, g_MapChipList[i][j]);
 		}
 	}
 	return 0;

@@ -53,4 +53,7 @@ void Mainloop(MSG* msg);
 //描画関数
 void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture);
 
+//テクスチャを読み込む
+void LoadTexture(const char* file_name,int TEX);
+
 #endif

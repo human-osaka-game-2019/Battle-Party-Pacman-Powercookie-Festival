@@ -3,6 +3,9 @@
 
 Game::SCENE_PAHSE Phase = Game::LOAD;
 
+MapchipLoading Mp;
+DrawMap map;
+
 float pink_PACMAN_tu = 0.0f;
 float pink_PACMAN_tv = 0.0f;
 
@@ -33,7 +36,8 @@ void Game::Game_Scene() {
 //ゲームのテクスチャの読み込み
 void Game::Loading() {
 
-	D3DXCreateTextureFromFile(dx.pD3Device,_T("Pink_PACMAN.png"),&dx.pTexture[BLUE_PACMAN]);
+	LoadTexture("Pink_PACMAN.png",BLUE_PACMAN);
+	
 	D3DXCreateTextureFromFile(dx.pD3Device, _T("Blue_PACMAN.png"), &dx.pTexture[PINK_PACMAN]);
 
 	D3DXCreateTextureFromFile(dx.pD3Device, _T("Pink_Ghost.png"), &dx.pTexture[PINK_GHOST]);
@@ -63,8 +67,9 @@ void Game::Process() {
 
 
 
+	map.DrawMapChip();
 
-
+	map.tetureprint(c, 15, 14);
 
 
 
