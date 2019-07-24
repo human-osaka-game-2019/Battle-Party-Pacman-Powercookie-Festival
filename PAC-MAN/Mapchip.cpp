@@ -47,7 +47,9 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 	return 0;
 }
 
-void DrawMapChip::DrawMapChip()
+DrawMap map;
+
+void DrawMap::DrawMapChip()
 {
 	for (int i = 0; i < MAP_SIZE_HEIGHT; i++)
 	{

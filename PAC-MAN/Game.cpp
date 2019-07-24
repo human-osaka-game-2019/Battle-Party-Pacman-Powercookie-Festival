@@ -1,4 +1,5 @@
 ﻿#include "Game.h"
+#include "Mapchip.h"
 
 Game::SCENE_PAHSE Phase = Game::LOAD;
 
