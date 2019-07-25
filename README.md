@@ -1,5 +1,6 @@
 # Battle-Party-Pacman-Powercookie-Festival
 ## Template
+
 |Gitmoji|入力|使用時|
 |:-:|:-:|:-:|
 |:art:|：art：|コードの構造の改善|
@@ -17,5 +18,12 @@
 |:boom:|：boom：|大きな変化をもたらす|
 |:see_no_evil:|：see_no_evil：|.gitignoreを追加|
 
+## コーディング規約
 
-
+|||
+|:-:|:-:|
+|変数名|名詞で小文字のスネークケース|
+|関数名|動詞でアッパーキャメル|
+|構造体名|大文字|
+|クラス名|大文字|
+|#define|大文字のスネークケース|
