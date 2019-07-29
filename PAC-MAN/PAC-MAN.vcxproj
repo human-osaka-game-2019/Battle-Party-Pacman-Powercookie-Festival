@@ -147,9 +147,11 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Mapchip.cpp" />
+    <ClCompile Include="Help.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Help.h" />
     <ClInclude Include="Mapchip.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Title.h" />
