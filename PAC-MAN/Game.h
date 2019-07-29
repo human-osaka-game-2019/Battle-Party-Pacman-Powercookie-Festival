@@ -25,7 +25,6 @@ public:
 	void Process();
 	void Release();
 
-	int a[15][14];
-	int* b[15];
+	
 };
 #endif
