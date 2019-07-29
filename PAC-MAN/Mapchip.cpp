@@ -53,18 +53,76 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 
 
 
+//
+//
+//
+////640
+//void DrawMap::DrawMapChip()
+//{
+//	for (int i = 0; i < MAP_SIZE_HEIGHT; i++)
+//	{
+//		for (int j = 0; j < MAP_SIZE_WIDTH; j++)
+//		{
+//			int chip_id = a[i][j];
+//			if (chip_id == 0)
+//			{
+//				continue;
+//			}
+//
+//			// テクスチャのサイズとマップチップのサイズから横と縦のチップ数を割り出す
+//			// (int)g_TextureList[TextureId::MapChip].m_Width       テクスチャのwidth
+//			//(int)g_TextureList[TextureId::MapChip].m_Height       テクスチャのheight
+//			//MAPCHIP_WIDTH                                         マップチップの１つのwidth大きさ
+//			//MAPCHIP_HEIGHT                                        マップチップの１つのheight大きさ
+//			int width_num = TEXTURE_WIDTH / MAPCHIP_WIDTH;
+//			int height_num = TEXTURE_HEIGHT / MAPCHIP_HEIGHT;
+//
+//			////表示したい一つのtextureの大きさ
+//			//float y = (float)(TEXTURE_CHIP_WIDTH / MAPCHIP_WIDTH);
+//			//float u = (float)(TEXTURE_CHIP_HEIGHT / MAPCHIP_HEIGHT);
+//
+//			// chip_idからチップのテクスチャ座標を割り出す
+//			// チップの描画
+//			//chip_pos_x                                            左上のtuの位置
+//			//chip_pos_y                                            左上のtvの位置
+//			//MAPCHIP_WIDTH                                         一マスのwidth大きさ
+//			//MAPCHIP_HEIGHT                                        一マスのheight大きさ
+//			float chip_pos_x = (float)(chip_id % width_num) * MAPCHIP_WIDTH;
+//			float chip_pos_y = (float)(chip_id / height_num) * MAPCHIP_HEIGHT;
+//
+//			DrawMap::tetureprint(MAPCHIP_WIDTH * j, MAPCHIP_HEIGHT * i,MAPCHIP_WIDTH,MAPCHIP_HEIGHT,chip_pos_x / TEXTURE_WIDTH,chip_pos_y / TEXTURE_HEIGHT, MAPCHIP_WIDTH / TEXTURE_WIDTH, MAPCHIP_HEIGHT / TEXTURE_HEIGHT);
+//		}
+//	}
+//}
+//
+////マップチップ描画
+//int DrawMap::tetureprint(int drawpos_x,int drawpos_y,int mapcip_width,int mapchip_height,float chip_pos_x,float chip_pos_y,float width_num,float height_num) {
+//	
+//			Draw( drawpos_x, drawpos_y,0xffffffff,chip_pos_x,chip_pos_y,mapcip_width,mapchip_height,width_num,height_num,TEST_MAPCHIP);
+//		
+//	return 0;
+//}
+//
+//
+//
 
 
 
 
 
-void DrawMap::DrawMapChip()
+
+
+
+
+
+//640
+void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y)
 {
-	for (int i = 0; i < MAP_SIZE_HEIGHT; i++)
+	for (int i = 0; i < map_size_height; i++)
 	{
-		for (int j = 0; j < MAP_SIZE_WIDTH; j++)
+		for (int j = 0; j < map_size_width; j++)
 		{
-			int chip_id = g_MapChipList[i][j];
+			int chip_id = a[i][j];
 			if (chip_id == 0)
 			{
 				continue;
@@ -75,8 +133,8 @@ void DrawMap::DrawMapChip()
 			//(int)g_TextureList[TextureId::MapChip].m_Height       テクスチャのheight
 			//MAPCHIP_WIDTH                                         マップチップの１つのwidth大きさ
 			//MAPCHIP_HEIGHT                                        マップチップの１つのheight大きさ
-			int width_num = 320 / MAPCHIP_WIDTH;
-			int height_num = 320 / MAPCHIP_HEIGHT;
+			int width_num = texture_width / mapchip_width;
+			int height_num = texture_height / mapchip_height;
 
 			// chip_idからチップのテクスチャ座標を割り出す
 			// チップの描画
@@ -84,21 +142,19 @@ void DrawMap::DrawMapChip()
 			//chip_pos_y                                            左上のtvの位置
 			//MAPCHIP_WIDTH                                         一マスのwidth大きさ
 			//MAPCHIP_HEIGHT                                        一マスのheight大きさ
-			float chip_pos_x = (float)(chip_id % width_num) * MAPCHIP_WIDTH;
-			float chip_pos_y = (float)(chip_id / height_num) * MAPCHIP_HEIGHT;
+			float chip_pos_x = (float)(chip_id % width_num) * mapchip_width;
+			float chip_pos_y = (float)(chip_id / height_num) * mapchip_height;
 
+			DrawMap::tetureprint(draw_pos_x + draw_width * j, draw_pos_y + draw_height * i, draw_width, draw_height, chip_pos_x / texture_width, chip_pos_y / texture_height, mapchip_width / texture_width, mapchip_height / texture_height);
 		}
 	}
 }
 
 //マップチップ描画
-int DrawMap::tetureprint(int** f, int k, int d) {
-	for (int i = 0; i < k; i++) {
-		for (int j = 0; j < d; j++) {
-			//描画
-			Draw(0, 0,0xffffffff,0.0f,0.0f,200,200,1.0f,1.0f, g_MapChipList[i][j]);
-		}
-	}
+int DrawMap::tetureprint(int drawpos_x, int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y, float width_num, float height_num) {
+
+	Draw(drawpos_x, drawpos_y, 0xffffffff, chip_pos_x, chip_pos_y, mapcip_width, mapchip_height, width_num, height_num, TEST_MAPCHIP);
+
 	return 0;
 }
 

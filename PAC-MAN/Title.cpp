@@ -1,7 +1,11 @@
 ﻿#include "Title.h"
+#include"Mapchip.h"
 
 //タイトルのフェーズの宣言
 Title::SCENE_PHASE Phase = Title::LOAD;
+
+MapchipLoading Mp;
+DrawMap map;
 
 //タイトルのフェーズの移動
 void Title::Title_Scene() {
@@ -23,8 +27,7 @@ void Title::Title_Scene() {
 //タイトルのテクスチャの読み込み
 void Title::Loading() {
 
-	D3DXCreateTextureFromFile(dx.pD3Device,_T("Game_Back.png"),&dx.pTexture[TITLE_BACK]);
-	D3DXCreateTextureFromFile(dx.pD3Device, _T("cookie.png"), &dx.pTexture[COOKIE]);
+	LoadTexture("map_test.png", TEST_MAPCHIP);
 
 	Phase = PROCESSING;
 }
@@ -32,13 +35,31 @@ void Title::Loading() {
 //タイトルの描画処理
 void Title::Process() {
 	
-	//タイトルの描画
-	Draw(0, 0,0xffffffff, 0.0f, 0.0f, 200, 200,1.0f, 1.0f, TITLE_BACK);
-	Draw(0, 200, 0xffffffff, 0.0f, 0.0f, 200, 200, 1.0f, 1.0f, COOKIE);
+	
+
+
+
+	/*for (int i = 0; i < 15; i++)
+	{
+		map.b[i] = map.a[i];
+	}
+
+	int** c = Mp.mapchip("Test_CSV.csv",15,14,map.b);*/
+
+
+
+	map.DrawMapChip(MAP_SIZE_WIDTH,MAP_SIZE_HEIGHT,TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT,0.0f,0.0f);
+
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 100.f, 0.0f);
 
 	//エンターでゲームへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;
+		nextseen = GAME;
+	}
+	if (dx.KeyState[DIK_SPACE] == dx.PRESS) {
+		Phase = RELEASES;
+		nextseen = HELP;
 	}
 }
 
@@ -51,5 +72,10 @@ void Title::Release() {
 			dx.pTexture[i] = nullptr;
 		}
 	}
-	scene = GAME;
+	if (nextseen == GAME) {
+		scene = GAME;
+	}
+	if (nextseen == HELP) {
+		scene = HELP;
+	}
 }
