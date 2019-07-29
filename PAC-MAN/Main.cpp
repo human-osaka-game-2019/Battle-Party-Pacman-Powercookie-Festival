@@ -3,6 +3,7 @@
 #include "DirectX.h"
 
 #include "Title.h"
+#include "Help.h"
 #include "Game.h"
 #include "Result.h"
 
@@ -12,6 +13,7 @@
 //ここ出来ればなくしたい
 DirectX dx;
 Title title;
+Help help;
 Game game;
 Result result;
 
@@ -159,6 +161,9 @@ void Mainloop(MSG* msg) {
 				switch (scene) {
 				case TITLE:
 					title.Title_Scene();
+					break;
+				case HELP:
+					help.Help_Scene();
 					break;
 				case GAME:
 					game.Game_Scene();
