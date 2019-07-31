@@ -153,8 +153,11 @@ void Mainloop(MSG* msg) {
 		else {
 			Curr = timeGetTime();
 			if (Curr - Prev >= 1000 / 60) {
+
 				dx.pD3Device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0, 0);
+
 				dx.pD3Device->BeginScene();
+
 				dx.UpdateKeyState();
 
 				//ここからゲーム処理

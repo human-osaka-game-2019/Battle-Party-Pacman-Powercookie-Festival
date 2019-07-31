@@ -3,9 +3,9 @@
 
 //タイトルのフェーズの宣言
 Title::SCENE_PHASE Phase = Title::LOAD;
-
-MapchipLoading Mp;
-DrawMap map;
+//
+//MapchipLoading Mp;
+//DrawMap map;
 
 //タイトルのフェーズの移動
 void Title::Title_Scene() {
@@ -27,7 +27,7 @@ void Title::Title_Scene() {
 //タイトルのテクスチャの読み込み
 void Title::Loading() {
 
-	LoadTexture("map_test.png", TEST_MAPCHIP);
+
 
 	Phase = PROCESSING;
 }
@@ -48,10 +48,10 @@ void Title::Process() {
 
 
 
-	map.DrawMapChip(MAP_SIZE_WIDTH,MAP_SIZE_HEIGHT,TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT,0.0f,0.0f);
+	/*map.DrawMapChip(MAP_SIZE_WIDTH,MAP_SIZE_HEIGHT,TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT,0.0f,0.0f);
 
 	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 100.f, 0.0f);
-
+*/
 	//エンターでゲームへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;

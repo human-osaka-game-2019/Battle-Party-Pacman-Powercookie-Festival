@@ -1,16 +1,20 @@
 ﻿#include "Game.h"
 #include "Mapchip.h"
 
+MapchipLoading Mp;
+DrawMap map;
+
 Game::SCENE_PAHSE Phase = Game::LOAD;
-//
-//MapchipLoading Mp;
-//DrawMap map;
 
-float pink_PACMAN_tu = 0.0f;
-float blue_PACMAN_tu = 0.0f;
-
-float pink_gauge_tu = 0.0f;
-float blue_gauge_tu = 0.0f;
+float a_pink_ghost_tu = 0.0f;
+float b_pink_ghost_tu = (64.0f * 2.0f) / 512.0f;
+float c_pink_ghost_tu = (64.0f * 4.0f) / 512.0f;
+float d_pink_ghost_tu = (64.0f * 6.0f) / 512.0f;
+float a_blue_ghost_tu = 0.0f;
+float b_blue_ghost_tu = (64.0f * 2.0f) / 512.0f;
+float c_blue_ghost_tu = (64.0f * 4.0f) / 512.0f;
+float d_blue_ghost_tu = (64.0f * 6.0f) / 512.0f;
+float blue_ghost_tv = 64.0f / 512.0f;
 
 int flamecount = 0;
 
@@ -36,20 +40,8 @@ void Game::Game_Scene() {
 //ゲームのテクスチャの読み込み
 void Game::Loading() {
 
-	//LoadTexture("Pink_PACMAN.png",BLUE_PACMAN);
-	//LoadTexture("Blue_PACMAN.png",PINK_PACMAN);
-	
-	LoadTexture("PACMAN.png", PACMAN);
-
-	LoadTexture("Pink_Ghost.png",PINK_GHOST);
-	LoadTexture("Blue_Ghost.png",BLUE_GHOST);
-	
-	LoadTexture("Gauge.png",PINK_GAUGE);
-	LoadTexture("Gauge.png",BLUE_GAUGE);
-	
-	LoadTexture("Mess_Width_Ghost.png",MESS_WIDTH_GHOST);
-	
-	LoadTexture("GameBack.png", BLUE_PACMAN);
+	LoadTexture("map_test.png", TEST_MAPCHIP);
+	LoadTexture("Ghost.png", GHOST);
 
 	Phase = PROCESSING;
 }
@@ -57,24 +49,76 @@ void Game::Loading() {
 //ゲームの描画と動き
 void Game::Process() {
 
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f);
+
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 100.f, 0.0f);
+
+
+
 
 
 	flamecount++;
 
-	if (flamecount == 6) {
-		flamecount = 0;
-		pink_PACMAN_tu += 0.25;
-		blue_PACMAN_tu += 0.25;
-		if (pink_PACMAN_tu == 1.0f) {
-			pink_PACMAN_tu = 0.0f;
-			blue_PACMAN_tu = 0.0f;
-		}
-		pink_gauge_tu += 0.05f;
-		blue_gauge_tu += 0.05f;
-	 }
 
 
-#ifndef R_H
+	//ピンクゴースト
+	Draw(0, 200, 0xffffffff, a_pink_ghost_tu, 0.0f, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(0, 300, 0xffffffff, b_pink_ghost_tu, 0.0f, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(100, 200, 0xffffffff, c_pink_ghost_tu, 0.0f, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(100, 300, 0xffffffff, d_pink_ghost_tu, 0.0f, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	//ブルーゴースト
+	Draw(200, 200, 0xffffffff, a_blue_ghost_tu, blue_ghost_tv, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(200, 300, 0xffffffff, b_blue_ghost_tu, blue_ghost_tv, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(300, 200, 0xffffffff, c_blue_ghost_tu, blue_ghost_tv, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	Draw(300, 300, 0xffffffff, d_blue_ghost_tu, blue_ghost_tv, 100, 100, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+
+	//ピンクゴーストアニメーション
+	a_pink_ghost_tu += 64.0f / 512.0f;
+	b_pink_ghost_tu += 64.0f / 512.0f;
+	c_pink_ghost_tu += 64.0f / 512.0f;
+	d_pink_ghost_tu += 64.0f / 512.0f;
+	if (a_pink_ghost_tu >= (64.0f * 2.0f) / 512.0f)
+	{
+		a_pink_ghost_tu = 0.0f;
+	}
+	if (b_pink_ghost_tu >= (64.0f * 4.0f) / 512.0f)
+	{
+		b_pink_ghost_tu = (64.0f * 2.0f) / 512.0f;
+	}
+	if (c_pink_ghost_tu >= (64.0f * 6.0f) / 512.0f)
+	{
+		c_pink_ghost_tu = (64.0f * 4.0f) / 512.0f;
+	}
+	if (d_pink_ghost_tu >= (64.0f * 8.0f) / 512.0f)
+	{
+		d_pink_ghost_tu = (64.0f * 6.0f) / 512.0f;
+	}
+	//ブルーゴーストアニメーション
+	a_blue_ghost_tu += 64.0f / 512.0f;
+	b_blue_ghost_tu += 64.0f / 512.0f;
+	c_blue_ghost_tu += 64.0f / 512.0f;
+	d_blue_ghost_tu += 64.0f / 512.0f;
+	if (a_blue_ghost_tu >= (64.0f * 2.0f) / 512.0f)
+	{
+		a_blue_ghost_tu = 0;
+	}
+	if (b_blue_ghost_tu >= (64.0f * 4.0f) / 512.0f)
+	{
+		b_blue_ghost_tu = (64.0f * 2.0f) / 512.0f;
+	}
+	if (c_blue_ghost_tu >= (64.0f * 6.0f) / 512.0f)
+	{
+		c_blue_ghost_tu = (64.0f * 4.0f) / 512.0f;
+	}
+	if (d_blue_ghost_tu >= (64.0f * 8.0f) / 512.0f)
+	{
+		d_blue_ghost_tu = (64.0f * 6.0f) / 512.0f;
+	}
+	
+
+
+
+#ifdef R_H
 #define R_H
 	if (dx.KeyState[DIK_K] == dx.PRESS) {
 		s += 0.25f;
@@ -88,18 +132,21 @@ void Game::Process() {
 
 #endif
 
-	/*Draw(0, 0, 0xffffffff, pink_PACMAN_tu, pink_PACMAN_tv, 200, 200, 0.25f, 1.0f, BLUE_PACMAN);
-	Draw(0,200,0xffffffff,pink_PACMAN_tu,pink_PACMAN_tv,200,200,0.25f,1.0f,PINK_PACMAN);*/
-
-	Draw(0, 0, 0xffffffff, pink_PACMAN_tu, 0.0f, 200, 200, 0.25f, 0.5f, PACMAN);
-	Draw(0, 210, 0xffffffff, blue_PACMAN_tu, 0.0f + 0.503f, 200, 200, 0.25f, 0.5f, PACMAN);
-
-	//8:1 width:height
-	Draw(0, 420, 0xffffffff,pink_gauge_tu,0.0f,400, 50, 0.05f, 0.5f, PINK_GAUGE);
-	Draw(0,480, 0xffffffff,blue_gauge_tu,0.507f, 400, 50, 0.05f, 0.5f, BLUE_GAUGE);
+	if (dx.KeyState[DIK_UP] == dx.PRESS) {
+		
+	}
+	if (dx.KeyState[DIK_DOWN] == dx.PRESS) {
+		
+	}
+	if (dx.KeyState[DIK_LEFT] == dx.PRESS) {
+		
+	}
+	if (dx.KeyState[DIK_RIGHT] == dx.PRESS) {
+		
+	}
 	
-	Draw(420, 0, 0xffffffff, 0.0f, 0.0f, 200, 200, 0.125f, 1.0f, PINK_GHOST);
-	Draw(420, 210, 0xffffffff, 0.0f, 0.0f, 200, 200, 0.125f, 1.0f, BLUE_GHOST);
+
+
 
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;
@@ -118,4 +165,22 @@ void Game::Release() {
 	}
 	//リザルトシーンへ
 	scene = RESULT;
+}
+
+
+void JudgeCollision() {
+
+
+
+
+
+}
+
+void Rotate(float x) {
+
+
+
+
+
+
 }
