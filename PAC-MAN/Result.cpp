@@ -20,7 +20,7 @@ void Result::Result_Scene() {
 //リザルトのテクスチャの読み込み
 void Result::Loading() {
 
-	LoadTexture("Result_Back.png", RESULT);
+	//LoadTexture("Result_Back.png", RESULT);
 
 	Phase = PROCESSING;
 }
