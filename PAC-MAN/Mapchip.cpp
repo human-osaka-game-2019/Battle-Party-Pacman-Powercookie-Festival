@@ -122,7 +122,7 @@ void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_w
 	{
 		for (int j = 0; j < map_size_width; j++)
 		{
-			int chip_id = a[i][j];
+			int chip_id = left_map[i][j];
 			if (chip_id == 0)
 			{
 				continue;

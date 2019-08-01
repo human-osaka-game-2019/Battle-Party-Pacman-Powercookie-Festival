@@ -70,18 +70,50 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	return DefWindowProc(hWnd, msg, wp, lp);
 }
 
+void Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], double degree = 0.0f) {
+	float center_x = (original[0].x + original[1].x) / 2.0f;
+	float center_y = (original[0].y + original[3].y) / 2.0f;
+
+
+	for (int i = 0; i < 4; i++) {
+		original[i].x -= center_x;
+		original[i].y -= center_y;
+
+		rotatevertex[i] = original[i];
+
+		// 回転後のx = 回転前のx・cosθ - 回転前のy・sinθ
+		rotatevertex[i].x = (float)(original[i].x * cos(dx.to_Rad(degree)) - original[i].y * sin(dx.to_Rad(degree)));
+
+		// 回転後のy = 回転前のx・sinθ + 回転前のy・cosθ
+		rotatevertex[i].y = (float)(original[i].x * sin(dx.to_Rad(degree)) + original[i].y * cos(dx.to_Rad(degree)));
+
+		original[i].x += center_x;
+		original[i].y += center_y;
+
+		rotatevertex[i].x += center_x;
+		rotatevertex[i].y += center_y;
+	}
+
+}
+
 //描画関数
-void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture) {
-	CustomVertex customvertex[4]{
+void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, double degree) {
+	CUSTOMVERTEX customvertex[4]{
 		{x        ,y         ,0,1,color,tu           ,tv            },
 		{x + width,y         ,0,1,color,tu + tu_width,tv            },
 		{x + width,y + height,0,1,color,tu + tu_width,tv + tv_height},
 		{x        ,y + height,0,1,color,tu           ,tv + tv_height},
 	};
 
+	CUSTOMVERTEX vertex[4];
+	Rotate(customvertex,vertex,degree);
+
 	dx.pD3Device->SetTexture(0, dx.pTexture[texture]);
-	dx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, customvertex, sizeof(CustomVertex));
+	dx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CUSTOMVERTEX));
 }
+
+
+
 
 
 void LoadTexture(const char* file_name,int TEX) {

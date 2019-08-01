@@ -27,7 +27,7 @@ void Title::Title_Scene() {
 //タイトルのテクスチャの読み込み
 void Title::Loading() {
 
-
+	
 
 	Phase = PROCESSING;
 }
@@ -38,20 +38,6 @@ void Title::Process() {
 	
 
 
-
-	/*for (int i = 0; i < 15; i++)
-	{
-		map.b[i] = map.a[i];
-	}
-
-	int** c = Mp.mapchip("Test_CSV.csv",15,14,map.b);*/
-
-
-
-	/*map.DrawMapChip(MAP_SIZE_WIDTH,MAP_SIZE_HEIGHT,TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT,0.0f,0.0f);
-
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 100.f, 0.0f);
-*/
 	//エンターでゲームへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;

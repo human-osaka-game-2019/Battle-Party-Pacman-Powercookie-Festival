@@ -56,6 +56,7 @@ public:
 
 	void All_Release();
 
+	double to_Rad(double degree);
 
 };
 

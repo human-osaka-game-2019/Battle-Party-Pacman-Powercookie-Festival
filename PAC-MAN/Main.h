@@ -8,7 +8,7 @@
 
 
 //カスタムバーテックス
-struct CustomVertex {
+struct CUSTOMVERTEX {
 	FLOAT x, y, z, rhw;
 	DWORD color;
 	FLOAT tu, tv;
@@ -19,13 +19,11 @@ enum TEX {
 	//HELP_BACK,
 	//GAME_BACK,
 	//RESULT_BACK,
-	//PACMAN,
+	PACMAN,
 	GHOST,
-	//MESS_WIDTH_GHOST,
 	//COOKIE,
 	//POWER_COOKIE,
-	//PINK_GAUGE,
-	//BLUE_GAUGE,
+	GAUGE,
 	TEST_MAPCHIP,
 };
 
@@ -52,7 +50,7 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME);
 void Mainloop(MSG* msg);
 
 //描画関数
-void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture);
+void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, double degree = 0.0f);
 
 //テクスチャを読み込む
 void LoadTexture(const char* file_name,int TEX);
