@@ -19,6 +19,9 @@ float right_pacman_x = 800.0f;
 float right_pacman_y = 16.0f;
 float left_pacman_x = 16.0f;
 float left_pacman_y = 16.0f;
+float pacman_tu = 0.0f;
+int left_pacman_degree = 0;
+int right_pacman_degree = 0;
 
 int flamecount = 0;
 
@@ -45,7 +48,7 @@ void Game::Game_Scene() {
 void Game::Loading() {
 
 	LoadTexture("map_test.png", TEST_MAPCHIP);
-	LoadTexture("Pacman.png", PACMAN);
+	LoadTexture("PACMAN_yellow.png", PACMAN);
 	LoadTexture("Ghost.png", GHOST);
 
 	Phase = PROCESSING;
@@ -60,19 +63,22 @@ void Game::Process() {
 
 	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 160.0f, 0.0f);
 
-	Draw(left_pacman_x,left_pacman_y,0xffffffff,0.0f,0.0f,16,16,1.0f,1.0f,PACMAN);
-
-	Draw(right_pacman_x, right_pacman_y, 0xffffffff, 0.0f, 0.0f, 16, 16, 1.0f, 1.0f, PACMAN);
+	Draw(left_pacman_x,left_pacman_y,0xffffffff,pacman_tu,0.0f,16,16,0.25f,1.0f,PACMAN,left_savekey);
 		
+	Draw(right_pacman_x, right_pacman_y, 0xffffffff, pacman_tu, 0.0f, 16, 16, 0.25f, 1.0f, PACMAN,right_savekey);
 
 
 
 
 
 
+	if (flamecount % 6 == 0) {
+		pacman_tu += 0.25f;
 
-
-	
+	}
+	if (1.0f <= pacman_tu) {
+		pacman_tu = 0.0f;
+	}
 
 
 
@@ -164,6 +170,8 @@ void Game::Process() {
 		left_savekey = RIGHT;
 	}
 	
+
+
 	if (dx.KeyState[DIK_W] == dx.PRESS) {
 		right_savekey = UP;
 	}

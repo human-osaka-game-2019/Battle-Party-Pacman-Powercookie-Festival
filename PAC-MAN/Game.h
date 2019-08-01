@@ -29,12 +29,13 @@ public:
 	};
 
 	enum KEY {
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
+		LEFT = 180,
+		RIGHT = 0,
+		UP = 270,
+		DOWN = 90,
 		STOP,
 	};
+
 
 	KEY left_key = KEY::STOP;
 	KEY right_key = KEY::STOP;
