@@ -35,8 +35,7 @@ void Title::Loading() {
 //タイトルの描画処理
 void Title::Process() {
 	
-	
-
+	Draw(0, 0, 0xffffffff, 0.0f, 0.0f, WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 1.0f, HELP_BACK);
 
 	//エンターでゲームへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {

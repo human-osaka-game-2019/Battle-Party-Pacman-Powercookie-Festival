@@ -7,9 +7,6 @@
 #include "Game.h"
 #include "Result.h"
 
-#define Width 1920
-#define Height 1080
-
 //ここ出来ればなくしたい
 DirectX dx;
 Title title;
@@ -105,6 +102,12 @@ void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT h
 		{x        ,y + height,0,1,color,tu           ,tv + tv_height},
 	};
 
+	dx.pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	dx.pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	dx.pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	dx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+
 	CUSTOMVERTEX vertex[4];
 	Rotate(customvertex,vertex,degree);
 
@@ -128,7 +131,7 @@ void LoadTexture(const char* file_name,int TEX) {
 		D3DPOOL_MANAGED,
 		D3DX_DEFAULT,
 		D3DX_DEFAULT,
-		0x0000ff00,
+		0x00000000,
 		nullptr,
 		nullptr,
 		&dx.pTexture[TEX]);
@@ -155,11 +158,11 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME) {
 	return *hWnd = CreateWindow(
 		API_NAME,							//クラスの名前
 		API_NAME,							//アプリケーションのタイトル
-		WS_OVERLAPPEDWINDOW | WS_VISIBLE,	//ウィンドウのスタイル
+		WS_VISIBLE | WS_POPUP,	//ウィンドウのスタイル
 		0,		            				//Xの位置
 		0,		            				//Yの位置
-		Width,								//幅
-		Height,								//高さ
+		WINDOW_WIDTH,								//幅
+		WINDOW_HEIGHT,								//高さ
 		NULL,								//親ウィンドウのハンドル
 		NULL,								//メニューのハンドル
 		*hInstance,							//インスタンスハンドル

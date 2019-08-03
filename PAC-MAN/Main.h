@@ -16,7 +16,7 @@ struct CUSTOMVERTEX {
 
 enum TEX {
 	//TITLE_BACK,
-	//HELP_BACK,
+	HELP_BACK,
 	//GAME_BACK,
 	//RESULT_BACK,
 	PACMAN,

@@ -26,10 +26,6 @@ public:
 
 private:
 
-	//ウィンドウのサイズ
-	FLOAT window_width = 1920;
-	FLOAT window_height = 1080;
-
 	//プロトタイプ宣言
 	void Loading();
 	void Process();

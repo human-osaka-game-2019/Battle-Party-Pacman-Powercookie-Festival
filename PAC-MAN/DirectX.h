@@ -9,6 +9,9 @@
 
 #define TEX_MAX 20
 
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+
 class DirectX {
 
 public:
@@ -36,6 +39,7 @@ public:
 		ON,
 		OFF
 	};
+
 
 	static const int MAX_KEY = 256;
 	const int MASK_NUM = 0x80;

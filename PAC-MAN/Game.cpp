@@ -15,13 +15,20 @@ float c_blue_ghost_tu = (64.0f * 4.0f) / 512.0f;
 float d_blue_ghost_tu = (64.0f * 6.0f) / 512.0f;
 float blue_ghost_tv = 64.0f / 512.0f;
 
-float right_pacman_x = 800.0f;
-float right_pacman_y = 16.0f;
-float left_pacman_x = 16.0f;
-float left_pacman_y = 16.0f;
+float right_pacman_x = 960.0f;
+float right_pacman_y = 32.0f;
+float left_pacman_x = 32.0f;
+float left_pacman_y = 32.0f;
 float pacman_tu = 0.0f;
 int left_pacman_degree = 0;
 int right_pacman_degree = 0;
+
+float right_ghost_x = 960.0f;
+float right_ghost_y = 32.0f;
+float left_ghost_x = 96.0f;
+float left_ghost_y = 32.0f;
+float left_ghost_tu = 0.0f;
+float right_ghost_tu = 0.0f;
 
 int flamecount = 0;
 
@@ -61,16 +68,17 @@ void Game::Process() {
 
 	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f);
 
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 448.f + 160.0f, 0.0f);
-
-	Draw(left_pacman_x,left_pacman_y,0xffffffff,pacman_tu,0.0f,16,16,0.25f,1.0f,PACMAN,left_savekey);
-		
-	Draw(right_pacman_x, right_pacman_y, 0xffffffff, pacman_tu, 0.0f, 16, 16, 0.25f, 1.0f, PACMAN,right_savekey);
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f);
 
 
 
+	Draw(left_ghost_x, left_ghost_y, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 0.25f, 0.5f, GHOST);
 
+	//Draw(right_ghost_x, right_ghost_y, 0xffffffff, right_ghost_tu, 0.5f, 32, 32, 0.25f,0.5f, GHOST);
 
+	Draw(left_pacman_x, left_pacman_y, 0xffffffff, pacman_tu, 0.0f, 32, 32, 0.25f, 1.0f, PACMAN, left_pacman_savekey);
+
+	Draw(right_pacman_x, right_pacman_y, 0xffffffff, pacman_tu, 0.0f, 32, 32, 0.25f, 1.0f, PACMAN, right_pacman_savekey);
 
 	if (flamecount % 6 == 0) {
 		pacman_tu += 0.25f;
@@ -140,7 +148,7 @@ void Game::Process() {
 
 
 
-	
+
 
 
 #ifdef R_H
@@ -156,110 +164,89 @@ void Game::Process() {
 	Draw(210, 210, 0xffffffff, s, 0.5f, 200, 200, 0.25f, 0.5f, PACMAN);
 
 #endif
-
+	//左パックマンのkey入力
 	if (dx.KeyState[DIK_UP] == dx.PRESS) {
-		left_savekey = UP;
+		left_pacman_savekey = UP;
+		left_row = -1;
+		left_col = 0;
 	}
 	if (dx.KeyState[DIK_DOWN] == dx.PRESS) {
-		left_savekey = DOWN;
+		left_pacman_savekey = DOWN;
+		left_row = 1;
+		left_col = 0;
 	}
 	if (dx.KeyState[DIK_LEFT] == dx.PRESS) {
-		left_savekey = LEFT;
+		left_pacman_savekey = LEFT;
+		left_row = 0;
+		left_col = -1;
 	}
-	if (dx.KeyState[DIK_RIGHT] == dx.PRESS) {		
-		left_savekey = RIGHT;
+	if (dx.KeyState[DIK_RIGHT] == dx.PRESS) {
+		left_pacman_savekey = RIGHT;
+		left_row = 0;
+		left_col = 1;
 	}
-	
 
-
+	//右パックマンのkey入力
 	if (dx.KeyState[DIK_W] == dx.PRESS) {
-		right_savekey = UP;
+		right_pacman_savekey = UP;
+		right_row = -1;
+		right_col = 0;
 	}
 	if (dx.KeyState[DIK_S] == dx.PRESS) {
-		right_savekey = DOWN;
+		right_pacman_savekey = DOWN;
+		right_row = 1;
+		right_col = 0;
 	}
 	if (dx.KeyState[DIK_A] == dx.PRESS) {
-		right_savekey = LEFT;
+		right_pacman_savekey = LEFT;
+		right_row = 0;
+		right_col = -1;
 	}
 	if (dx.KeyState[DIK_D] == dx.PRESS) {
-		right_savekey = RIGHT;
+		right_pacman_savekey = RIGHT;
+		right_row = 0;
+		right_col = 1;
 	}
 
 	int* array_left_map[31];
 	int* array_right_map[31];
 
-	for (int i = 0; i < 31;i++) {
+	for (int i = 0; i < 31; i++) {
 		array_left_map[i] = map.left_map[i];
-
 	}
-
 	for (int i = 0; i < 31; i++) {
 		array_right_map[i] = map.right_map[i];
-
-	}
-
-	switch (right_savekey) {
-	case LEFT:
-		right_row = 0;
-		right_col = -1;
-		break;
-	case RIGHT:
-		right_row = 0;
-		right_col = 1;
-		break;
-	case UP:
-		right_row = -1;
-		right_col = 0;
-		break;
-	case DOWN:
-		right_row = 1;
-		right_col = 0;
-		break;
-	case STOP:
-
-		break;
-	default:
-
-		break;
-	}
-
-	switch (left_savekey) {
-	case LEFT:
-		left_row = 0;
-		left_col = -1;
-		break;
-	case RIGHT:
-		left_row = 0;
-		left_col = 1;
-		break;
-	case UP:
-		left_row = -1;
-		left_col = 0;
-		break;
-	case DOWN:
-		left_row = 1;
-		left_col = 0;
-		break;
-	case STOP:
-
-		break;
-	default:
-
-		break;
 	}
 
 
-	JudgeCollision(&left_pacman_x, &left_pacman_y,0.0f,0.0f,left_row,left_col, DRAW_WIDTH, DRAW_HEIGHT,  &left_key, &left_savekey, array_left_map);
-	
-	JudgeCollision(&right_pacman_x, &right_pacman_y, 448.f + 160.0f,0.0f, right_row, right_col, DRAW_WIDTH, DRAW_HEIGHT, &right_key, &right_savekey, array_right_map);
-
+	CanMoveGhost(array_left_map);
 
 	
+
+
+
+	//右ステージのkey入力による当たり判定の方向
+	//左ステージのkey入力による当たり判定の方向
+	
+	//左のパックマンの当たり判定
+	JudgeCollision(&left_pacman_x, &left_pacman_y, 0.0f, 0.0f, left_row, left_col, DRAW_WIDTH, DRAW_HEIGHT, &left_key, &left_pacman_savekey, array_left_map);
+	//右のパックマンの当たり判定
+	JudgeCollision(&right_pacman_x, &right_pacman_y, 448.f + 160.0f, 0.0f, right_row, right_col, DRAW_WIDTH, DRAW_HEIGHT, &right_key, &right_pacman_savekey, array_right_map);
+	//左のゴーストの当たり判定
+	JudgeCollision(&left_ghost_x, &left_ghost_y, 0.0f, 0.0f, left_row, left_col, DRAW_WIDTH, DRAW_HEIGHT, &left_key, &left_ghost_savekey, array_left_map);
+	
+	
+	//左画面の真ん中の逆から出てくる処理
+	if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (27 == (int)(left_pacman_x / DRAW_WIDTH))) {
+		left_pacman_x = 0.0f;
+	}else if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (0 == (int)(left_pacman_x / DRAW_WIDTH))) {
+		left_pacman_x = DRAW_WIDTH * 27;
+	}
 
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;
-}
 	}
+}
 
 //ゲームのテクスチャの解放
 void Game::Release() {
@@ -274,7 +261,7 @@ void Game::Release() {
 	//リザルトシーンへ
 	scene = RESULT;
 }
-
+//当たり判定関数
 void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_,int col_,float draw_width,float draw_height,KEY *key,KEY *savekey,int** map) {
 	if (((int)*x % (int)draw_width) == 0 && ((int)*y % (int)draw_height == 0)) {
 		int col = (*x - start_x) / draw_width;
@@ -283,16 +270,16 @@ void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_
 			*key = *savekey;
 			switch (*key) {
 			case LEFT:
-				*x -= 16;
+				*x -= 32;
 				break;
 			case RIGHT:
-				*x += 16;
+				*x += 32;
 				break;
 			case UP:
-				*y -= 16;
+				*y -= 32;
 				break;
 			case DOWN:
-				*y += 16;
+				*y += 32;
 				break;
 			case STOP:
 
@@ -301,8 +288,53 @@ void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_
 
 				break;
 			}
-		
 		}
 	}
 }
 
+//ゴーストの移動できる方向の確認
+void Game::CanMoveGhost(int** map) {
+	int ro = 0;
+	int co = 1;
+	if (((int)left_ghost_x % (int)DRAW_WIDTH) == 0 && ((int)left_ghost_y % (int)DRAW_HEIGHT == 0)) {
+		for (int i = 0; i < (4 * 28); i++) {
+			//右の確認
+			if (0 < co) {
+				co++;
+			}
+			//左に移行
+			if (co == 28) {
+				co = -1;
+			}
+			//左の確認
+			if (co < 0) {
+				co--;
+			}
+			//下に移行
+			if (co == -28) {
+				co = 0;
+				ro++;
+			}
+			//下の確認
+			if (0 < ro) {
+				ro++;
+			}
+			//上に移行
+			if (ro == 28) {
+				ro = -1;
+			}
+			//上の確認
+			if (ro < 0) {
+				ro = -1;
+			}
+			//if (map[(int)(left_ghost_x / DRAW_WIDTH) + ro][(int)(left_ghost_x / DRAW_WIDTH) + co] == map[(int)(left_pacman_x / DRAW_WIDTH)][(int)(left_pacman_x / DRAW_WIDTH)]){//0 || map[(int)(left_ghost_x / DRAW_WIDTH) + ro][(int)(left_ghost_x / DRAW_WIDTH) + co] == 35 || map[(int)(left_ghost_x / DRAW_WIDTH) + ro][(int)(left_ghost_x / DRAW_WIDTH) + co] == 38) {
+			//}
+			if ((int)((left_ghost_x / DRAW_WIDTH) + ro) == (int)((left_pacman_x / DRAW_WIDTH)) || (int)((left_ghost_y / DRAW_WIDTH) + co) == (int)((left_pacman_y / DRAW_WIDTH))) {
+				left_ghost_x += 32;
+			}
+
+		}
+	}
+
+
+}

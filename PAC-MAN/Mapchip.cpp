@@ -111,11 +111,6 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 
 
 
-
-
-
-
-//640
 void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y)
 {
 	for (int i = 0; i < map_size_height; i++)

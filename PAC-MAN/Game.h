@@ -13,8 +13,8 @@
 #define MAPCHIP_HEIGHT (32.f)		// マップチップの縦幅
 #define TEXTURE_WIDTH (256.f)     // 読み込んだテクスチャの横幅
 #define TEXTURE_HEIGHT (256.f)    // 読み込んだテクスチャの縦幅
-#define DRAW_WIDTH (16.f)         // 描画する横幅
-#define DRAW_HEIGHT (16.f)        // 描画する縦幅
+#define DRAW_WIDTH (32.f)         // 描画する横幅
+#define DRAW_HEIGHT (32.f)        // 描画する縦幅
 
 
 class Game {
@@ -29,18 +29,21 @@ public:
 	};
 
 	enum KEY {
-		LEFT = 180,
 		RIGHT = 0,
-		UP = 270,
-		DOWN = 90,
+		DOWN  = 90,
+		LEFT  = 180,
+		UP    = 270,
 		STOP,
 	};
 
 
 	KEY left_key = KEY::STOP;
 	KEY right_key = KEY::STOP;
-	KEY left_savekey = KEY::STOP;
-	KEY right_savekey = KEY::STOP;
+	KEY left_pacman_savekey = KEY::STOP;
+	KEY right_pacman_savekey = KEY::STOP;
+	KEY left_ghost_savekey = KEY::STOP;
+	KEY right_ghost_savekey = KEY::STOP;
+
 	int left_row = 0;
 	int left_col = 0;
 	int right_row = 0;
@@ -55,7 +58,8 @@ public:
 	
 	//当たり判定
 	void JudgeCollision(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey, int** map);
-	
+	//パックマンを探す処理
+	void CanMoveGhost(int** map);
 
 };
 #endif

@@ -28,8 +28,7 @@ void Result::Loading() {
 //リザルトの描画処理
 void Result::Process() {
 
-
-	Draw(0, 0, 0xffffffff, 0.0f, 0.0f, window_width, window_height, 1.0f, 1.0f, RESULT);
+	Draw(0, 0, 0xffffffff, 0.0f, 0.0f, WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 1.0f, HELP_BACK);
 
 	//エンターでタイトルへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
