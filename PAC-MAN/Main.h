@@ -16,17 +16,22 @@ struct CustomVertex {
 
 enum TEX {
 	TITLE_BACK,
+	TITLE_LOGO,
+	TITLE_SELECT_UI,
+	TITLE_PACMAN,
 	GAME_BACK,
-	RESULT_BACK,
+	RESULT_BACK_oneP,
+	RESULT_BACK_twoP,
+	RESULT_LOGO,
+	RESULT_SELECT_UI,
 	PINK_PACMAN,
 	BLUE_PACMAN,
-	PINK_GHOST,
-	BLUE_GHOST,
-	MESS_WIDTH_GHOST,
 	COOKIE,
 	POWER_COOKIE,
+	POWER_COOKIE_GAUGE,
 	PINK_GAUGE,
 	BLUE_GAUGE,
+	GHOST,
 };
 
 enum SCENE {
@@ -52,6 +57,8 @@ void Mainloop(MSG* msg);
 
 //描画関数
 void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture);
+
+void DrawTx(INT texture);
 
 //テクスチャを読み込む
 void LoadTexture(const char* file_name,int TEX);

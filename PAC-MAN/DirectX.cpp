@@ -24,9 +24,7 @@ HRESULT DirectX::BuildDxDevice(HWND hWnd, const TCHAR* filepath)
 		return E_FAIL;
 	}
 
-	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-
-	pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	
 
 	return S_OK;
 }
@@ -100,8 +98,8 @@ void DirectX::InitPresentParameters(HWND hWnd)
 {
 	ZeroMemory(&D3dPresentParameters, sizeof(D3dPresentParameters));
 
-	D3dPresentParameters.BackBufferWidth = 1280;
-	D3dPresentParameters.BackBufferHeight = 720;
+	D3dPresentParameters.BackBufferWidth = 1920;
+	D3dPresentParameters.BackBufferHeight = 1080;
 	D3dPresentParameters.BackBufferFormat = D3DFMT_UNKNOWN;
 	D3dPresentParameters.BackBufferCount = 1;
 	D3dPresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;

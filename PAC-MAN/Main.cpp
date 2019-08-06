@@ -76,9 +76,15 @@ void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT h
 		{x + width,y + height,0,1,color,tu + tu_width,tv + tv_height},
 		{x        ,y + height,0,1,color,tu           ,tv + tv_height},
 	};
+	dx.pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	dx.pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	dx.pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	dx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
 	dx.pD3Device->SetTexture(0, dx.pTexture[texture]);
 	dx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, customvertex, sizeof(CustomVertex));
+
 }
 
 
@@ -98,11 +104,14 @@ void LoadTexture(const char* file_name,int TEX) {
 		nullptr,
 		nullptr,
 		&dx.pTexture[TEX]);
+
+
 }
-//
+
 HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME) {
 	//ウィンドウクラス
 	WNDCLASS Wndclass;
+
 	Wndclass.style = CS_HREDRAW | CS_VREDRAW; //ウィンドウスタイル
 	Wndclass.lpfnWndProc = WndProc; //ウィンドウプロシージャ
 	Wndclass.cbClsExtra = 0; //メモリ確保
@@ -121,7 +130,7 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME) {
 	return *hWnd = CreateWindow(
 		API_NAME,							//クラスの名前
 		API_NAME,							//アプリケーションのタイトル
-		WS_OVERLAPPEDWINDOW | WS_VISIBLE,	//ウィンドウのスタイル
+		WS_VISIBLE | WS_POPUP,	//ウィンドウのスタイル
 		0,		            				//Xの位置
 		0,		            				//Yの位置
 		Width,								//幅
@@ -131,6 +140,7 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME) {
 		*hInstance,							//インスタンスハンドル
 		NULL								//メッセージに渡されるパラメータ
 	);
+
 }
 
 //メインループ
