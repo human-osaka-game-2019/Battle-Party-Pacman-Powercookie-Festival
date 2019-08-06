@@ -36,7 +36,7 @@ void Game::Loading() {
 	LoadTexture("Ghost.png", GHOST);
 	LoadTexture("GameBack.png", GAME_BACK);
 	LoadTexture("gauge.png",GAUGE);
-
+	srand((unsigned int)time(NULL));
 	Phase = PROCESSING;
 }
 
@@ -123,13 +123,13 @@ void Game::Process() {
 
 	//std::mt19937 rand{ std::random_device{}() };
 	//std::uniform_int_distribution<int> a(0, 3);
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if ((int)(left_ghost_y_1) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x_1) % (int)(DRAW_WIDTH)) {
 		if ((map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 0) && (map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 35) && (map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 38)) {
 			int save = left_ghost_move_1;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
+				
 				left_ghost_move_1 = rand() % 4;//a(rand);
 				if (save == left_ghost_move_1) {
 					continue;
