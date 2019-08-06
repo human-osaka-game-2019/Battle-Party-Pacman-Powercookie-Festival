@@ -44,6 +44,8 @@ public:
 	static const int MAX_KEY = 256;
 	const int MASK_NUM = 0x80;
 
+	int win;
+
 	KEY_STATE KeyState[256];
 
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);

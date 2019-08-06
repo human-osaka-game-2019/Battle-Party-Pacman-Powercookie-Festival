@@ -94,7 +94,7 @@ void Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], double degree
 }
 
 //描画関数
-void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, int texture, double degree) {
+void Draw(FLOAT x, FLOAT y,DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, double degree) {
 	CUSTOMVERTEX customvertex[4]{
 		{x        ,y         ,0,1,color,tu           ,tv            },
 		{x + width,y         ,0,1,color,tu + tu_width,tv            },

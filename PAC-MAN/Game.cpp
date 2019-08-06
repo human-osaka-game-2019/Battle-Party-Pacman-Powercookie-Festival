@@ -37,6 +37,158 @@ void Game::Loading() {
 	LoadTexture("GameBack.png", GAME_BACK);
 	LoadTexture("gauge.png",GAUGE);
 	srand((unsigned int)time(NULL));
+
+	right_pacman_x = 416.0f + 960.f;
+	right_pacman_y = 544.0f;
+	right_pacman_degree = 0;
+	right_pacman_rotate = KEY::STOP;
+	right_pacman_key = KEY::STOP;
+	right_pacman_savekey = KEY::STOP;
+	right_pacman_row = 0;
+	right_pacman_col = 0;
+	right_pacman_life = 1;
+
+
+	left_pacman_x = 416.0f;
+	left_pacman_y = 544.0f;
+	left_pacman_degree = 0;
+	left_pacman_rotate = KEY::STOP;
+	left_pacman_key = KEY::STOP;
+	left_pacman_savekey = KEY::STOP;
+	left_pacman_row = 0;
+	left_pacman_col = 0;
+	left_pacman_life = 1;
+
+	flamecount = 0;
+	pacman_tu = 0.0f;
+	s = 0;
+
+	left_gauge_tu = 0.f;
+	right_gauge_tu = 0.f;
+
+
+	left_ghost_tu = 0.0f;
+	right_ghost_tu = 0.0f;
+
+
+	right_ghost_x_1 = 416.0f + 960.f;
+	right_ghost_y_1 = 352.0f;
+	left_ghost_x_1 = 416.0f;
+	left_ghost_y_1 = 352.0f;
+
+
+	right_ghost_x_2 = 448.0f + 960.f;
+	right_ghost_y_2 = 352.0f;
+	left_ghost_x_2 = 448.0f;
+	left_ghost_y_2 = 352.0f;
+
+
+	right_ghost_x_3 = 384.0f + 960.f;
+	right_ghost_y_3 = 352.0f;
+	left_ghost_x_3 = 384.0f;
+	left_ghost_y_3 = 352.0f;
+
+	right_ghost_x_4 = 352.0f + 960.f;
+	right_ghost_y_4 = 352.0f;
+	left_ghost_x_4 = 352.0f;
+	left_ghost_y_4 = 352.0f;
+
+
+
+
+
+
+
+
+
+	left_ghost_row_1 = 0;
+	left_ghost_col_1 = 0;
+	right_ghost_row_1 = 0;
+	right_ghost_col_1 = 0;
+	ghostmove_x_1 = 0;
+	ghostmove_y_1 = 0;
+	left_ghost_key_1 = KEY::STOP;
+	right_ghost_key_1 = KEY::STOP;
+	left_ghost_savekey_1 = KEY::STOP;
+	right_ghost_savekey_1 = KEY::STOP;
+	left_ghost_rotate_1 = KEY::STOP;
+	right_ghost_rotate_1 = KEY::STOP;
+	left_ghostpop_1 = 0;
+	right_ghostpop_1 = 0;
+
+	left_ghost_row_2 = 0;
+	left_ghost_col_2 = 0;
+	right_ghost_row_2 = 0;
+	right_ghost_col_2 = 0;
+	ghostmove_x_2 = 0;
+	ghostmove_y_2 = 0;
+	left_ghost_key_2 = KEY::STOP;
+	right_ghost_key_2 = KEY::STOP;
+	left_ghost_savekey_2 = KEY::STOP;
+	right_ghost_savekey_2 = KEY::STOP;
+	left_ghost_rotate_2 = KEY::STOP;
+	right_ghost_rotate_2 = KEY::STOP;
+	left_ghostpop_2 = 0;
+	right_ghostpop_2 = 0;
+
+	left_ghost_row_3 = 0;
+	left_ghost_col_3 = 0;
+	right_ghost_row_3 = 0;
+	right_ghost_col_3 = 0;
+	ghostmove_x_3 = 0;
+	ghostmove_y_3 = 0;
+	left_ghost_key_3 = KEY::STOP;
+	right_ghost_key_3 = KEY::STOP;
+	left_ghost_savekey_3 = KEY::STOP;
+	right_ghost_savekey_3 = KEY::STOP;
+	left_ghost_rotate_3 = KEY::STOP;
+	right_ghost_rotate_3 = KEY::STOP;
+	left_ghostpop_3 = 0;
+	right_ghostpop_3 = 0;
+
+	left_ghost_row_4 = 0;
+	left_ghost_col_4 = 0;
+	right_ghost_row_4 = 0;
+	right_ghost_col_4 = 0;
+	ghostmove_x_4 = 0;
+	ghostmove_y_4 = 0;
+	left_ghost_key_4 = KEY::STOP;
+	right_ghost_key_4 = KEY::STOP;
+	left_ghost_savekey_4 = KEY::STOP;
+	right_ghost_savekey_4 = KEY::STOP;
+	left_ghost_rotate_4 = KEY::STOP;
+	right_ghost_rotate_4 = KEY::STOP;
+	left_ghostpop_4 = 0;
+	right_ghostpop_4 = 0;
+
+
+
+
+	left_ghost_move_1 = 3;
+	right_ghost_move_1 = 3;
+
+	left_ghost_move_2 = 3;
+	right_ghost_move_2 = 3;
+
+	left_ghost_move_3 = 3;
+	right_ghost_move_3 = 3;
+
+	left_ghost_move_4 = 3;
+	right_ghost_move_4 = 3;
+
+
+
+
+	left_cookie = 0;
+	left_powercookie = 0;
+
+	right_cookie = 0;
+	right_powercookie = 0;
+
+	right_cookie_count = 0;
+	left_cookie_count = 0;
+
+
 	Phase = PROCESSING;
 }
 
@@ -59,16 +211,16 @@ void Game::Process() {
 
 
 
-	left_ghost_tu_1 += 64.0f / 512.0f;
-	right_ghost_tu_1 += 64.0f / 512.0f;
-	if (left_ghost_tu_1 >= (64.0f * 2.0f) / 512.0f)
+	left_ghost_tu += 64.0f / 512.0f;
+	right_ghost_tu += 64.0f / 512.0f;
+	if (left_ghost_tu >= (64.0f * 2.0f) / 512.0f)
 	{
-		left_ghost_tu_1 = 0;
+		left_ghost_tu = 0;
 	}
 
-	if (right_ghost_tu_1 >= (64.0f * 4.0f) / 512.0f)
+	if (right_ghost_tu >= (64.0f * 4.0f) / 512.0f)
 	{
-		right_ghost_tu_1 = (64.0f * 2.0f) / 512.0f;
+		right_ghost_tu = (64.0f * 2.0f) / 512.0f;
 	}
 
 
@@ -121,16 +273,12 @@ void Game::Process() {
 		right_pacman_col = 1;
 	}
 
-	//std::mt19937 rand{ std::random_device{}() };
-	//std::uniform_int_distribution<int> a(0, 3);
-
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if ((int)(left_ghost_y_1) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x_1) % (int)(DRAW_WIDTH)) {
 		if ((map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 0) && (map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 35) && (map.left_map[(int)(left_ghost_y_1 / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x_1 / DRAW_WIDTH) + left_ghost_col_1] != 38)) {
 			int save = left_ghost_move_1;
 			for (int i = 0; i < 1000; i++) {
-				
-				left_ghost_move_1 = rand() % 4;//a(rand);
+				//left_ghost_move_1 = rand() % 4;
 				if (save == left_ghost_move_1) {
 					continue;
 				}
@@ -163,12 +311,11 @@ void Game::Process() {
 
 		break;
 	}
-	if ((int)(left_ghost_y_1) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x_1) % (int)(DRAW_WIDTH)) {
+	if ((int)(left_ghost_y_2) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x_2) % (int)(DRAW_WIDTH)) {
 		if ((map.left_map[(int)(left_ghost_y_2 / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x_2 / DRAW_WIDTH) + left_ghost_col_2] != 0) && (map.left_map[(int)(left_ghost_y_2 / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x_2 / DRAW_WIDTH) + left_ghost_col_2] != 35) && (map.left_map[(int)(left_ghost_y_2 / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x_2 / DRAW_WIDTH) + left_ghost_col_2] != 38)) {
 			int save = left_ghost_move_2;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				left_ghost_move_2 = rand() % 4;//a(rand);
+				//left_ghost_move_2 = rand() % 4;
 				if (save == left_ghost_move_2) {
 					continue;
 				}
@@ -205,8 +352,7 @@ void Game::Process() {
 		if ((map.left_map[(int)(left_ghost_y_3 / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x_3 / DRAW_WIDTH) + left_ghost_col_3] != 0) && (map.left_map[(int)(left_ghost_y_3 / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x_3 / DRAW_WIDTH) + left_ghost_col_3] != 35) && (map.left_map[(int)(left_ghost_y_3 / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x_3 / DRAW_WIDTH) + left_ghost_col_3] != 38)) {
 			int save = left_ghost_move_3;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				left_ghost_move_3 = rand() % 4;//a(rand);
+				//left_ghost_move_3 = rand() % 4;
 				if (save == left_ghost_move_3) {
 					continue;
 				}
@@ -243,8 +389,7 @@ void Game::Process() {
 		if ((map.left_map[(int)(left_ghost_y_4 / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x_4 / DRAW_WIDTH) + left_ghost_col_4] != 0) && (map.left_map[(int)(left_ghost_y_4 / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x_4 / DRAW_WIDTH) + left_ghost_col_4] != 35) && (map.left_map[(int)(left_ghost_y_4 / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x_4 / DRAW_WIDTH) + left_ghost_col_4] != 38)) {
 			int save = left_ghost_move_4;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				left_ghost_move_4 = rand() % 4;//a(rand);
+				//left_ghost_move_4 = rand() % 4;
 				if (save == left_ghost_move_4) {
 					continue;
 				}
@@ -283,8 +428,7 @@ void Game::Process() {
 		if ((map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 0) && (map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 35) && (map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 38)) {
 			int save = right_ghost_move_1;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				right_ghost_move_1 = rand() % 4;//a(rand);
+				//right_ghost_move_1 = rand() % 4;
 				if (save == right_ghost_move_1) {
 					continue;
 				}
@@ -322,8 +466,7 @@ void Game::Process() {
 		if ((map.right_map[(int)(left_ghost_y_2 / DRAW_HEIGHT) + right_ghost_row_2][(int)(right_ghost_x_2 / DRAW_WIDTH) + right_ghost_col_2] != 0) && (map.right_map[(int)(right_ghost_y_2 / DRAW_HEIGHT) + right_ghost_row_2][(int)(right_ghost_x_2 / DRAW_WIDTH) + right_ghost_col_2] != 35) && (map.right_map[(int)(right_ghost_y_2 / DRAW_HEIGHT) + right_ghost_row_2][(int)(right_ghost_x_2 / DRAW_WIDTH) + right_ghost_col_2] != 38)) {
 			int save = right_ghost_move_2;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				right_ghost_move_2 = rand() % 4;//a(rand);
+				//right_ghost_move_2 = rand() % 4;
 				if (save == right_ghost_move_2) {
 					continue;
 				}
@@ -361,8 +504,7 @@ void Game::Process() {
 		if ((map.right_map[(int)(left_ghost_y_3 / DRAW_HEIGHT) + right_ghost_row_3][(int)(right_ghost_x_3 / DRAW_WIDTH) + right_ghost_col_3] != 0) && (map.right_map[(int)(right_ghost_y_3 / DRAW_HEIGHT) + right_ghost_row_3][(int)(right_ghost_x_3 / DRAW_WIDTH) + right_ghost_col_3] != 35) && (map.right_map[(int)(right_ghost_y_3 / DRAW_HEIGHT) + right_ghost_row_3][(int)(right_ghost_x_3 / DRAW_WIDTH) + right_ghost_col_3] != 38)) {
 			int save = right_ghost_move_3;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				right_ghost_move_3 = rand() % 4;//a(rand);
+				//right_ghost_move_3 = rand() % 4;
 				if (save == right_ghost_move_3) {
 					continue;
 				}
@@ -400,8 +542,7 @@ void Game::Process() {
 		if ((map.right_map[(int)(left_ghost_y_4 / DRAW_HEIGHT) + right_ghost_row_4][(int)(right_ghost_x_4 / DRAW_WIDTH) + right_ghost_col_4] != 0) && (map.right_map[(int)(right_ghost_y_4 / DRAW_HEIGHT) + right_ghost_row_4][(int)(right_ghost_x_4 / DRAW_WIDTH) + right_ghost_col_4] != 35) && (map.right_map[(int)(right_ghost_y_4 / DRAW_HEIGHT) + right_ghost_row_4][(int)(right_ghost_x_4 / DRAW_WIDTH) + right_ghost_col_4] != 38)) {
 			int save = right_ghost_move_4;
 			for (int i = 0; i < 1000; i++) {
-				srand((unsigned int)time(NULL));
-				right_ghost_move_4 = rand() % 4;//a(rand);
+				right_ghost_move_4 = rand() % 4;
 				if (save == right_ghost_move_4) {
 					continue;
 				}
@@ -486,24 +627,24 @@ void Game::Process() {
 	
 	
 	//左のゴーストの当たり判定
-	CanMoveGhost(&left_ghost_x_1, &left_ghost_y_1, 0.0f, 0.0f, left_ghost_row_1, left_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_1, &left_ghost_savekey_1, &left_ghost_rotate_1, array_left_map);
+	CanMoveGhost(&left_ghost_x_1, &left_ghost_y_1, 0.0f, 0.0f, left_ghost_row_1, left_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_1, &left_ghost_savekey_1, &left_ghost_rotate_1, &left_ghost_move_1, array_left_map);
 	//右のゴーストの当たり判定
-	CanMoveGhost(&right_ghost_x_1, &right_ghost_y_1, 0.0f, 0.0f, right_ghost_row_1, right_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_1, &right_ghost_savekey_1, &right_ghost_rotate_1, array_right_map);
+	CanMoveGhost(&right_ghost_x_1, &right_ghost_y_1, 960.0f, 0.0f, right_ghost_row_1, right_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_1, &right_ghost_savekey_1, &right_ghost_rotate_1,&right_ghost_move_1 ,array_right_map);
 
 	//左のゴーストの当たり判定
-	CanMoveGhost(&left_ghost_x_2, &left_ghost_y_2, 0.0f, 0.0f, left_ghost_row_2, left_ghost_col_2, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_2, &left_ghost_savekey_2, &left_ghost_rotate_2, array_left_map);
+	CanMoveGhost(&left_ghost_x_2, &left_ghost_y_2, 0.0f, 0.0f, left_ghost_row_2, left_ghost_col_2, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_2, &left_ghost_savekey_2, &left_ghost_rotate_2,&left_ghost_move_2, array_left_map);
 	//右のゴーストの当たり判定
-	CanMoveGhost(&right_ghost_x_2, &right_ghost_y_2, 0.0f, 0.0f, right_ghost_row_2, right_ghost_col_2, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_2, &right_ghost_savekey_2, &right_ghost_rotate_2, array_right_map);
+	CanMoveGhost(&right_ghost_x_2, &right_ghost_y_2, 960.0f, 0.0f, right_ghost_row_2, right_ghost_col_2, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_2, &right_ghost_savekey_2, &right_ghost_rotate_2,&right_ghost_move_2, array_right_map);
 
 	//左のゴーストの当たり判定
-	CanMoveGhost(&left_ghost_x_3, &left_ghost_y_3, 0.0f, 0.0f, left_ghost_row_3, left_ghost_col_3, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_3, &left_ghost_savekey_3, &left_ghost_rotate_3, array_left_map);
+	CanMoveGhost(&left_ghost_x_3, &left_ghost_y_3, 0.0f, 0.0f, left_ghost_row_3, left_ghost_col_3, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_3, &left_ghost_savekey_3, &left_ghost_rotate_3, &left_ghost_move_3,array_left_map);
 	//右のゴーストの当たり判定
-	CanMoveGhost(&right_ghost_x_3, &right_ghost_y_3, 0.0f, 0.0f, right_ghost_row_3, right_ghost_col_3, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_3, &right_ghost_savekey_3, &right_ghost_rotate_3, array_right_map);
+	CanMoveGhost(&right_ghost_x_3, &right_ghost_y_3, 960.0f, 0.0f, right_ghost_row_3, right_ghost_col_3, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_3, &right_ghost_savekey_3, &right_ghost_rotate_3,&right_ghost_move_3, array_right_map);
 
 	//左のゴーストの当たり判定
-	CanMoveGhost(&left_ghost_x_4, &left_ghost_y_4, 0.0f, 0.0f, left_ghost_row_4, left_ghost_col_4, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_4, &left_ghost_savekey_4, &left_ghost_rotate_4, array_left_map);
+	CanMoveGhost(&left_ghost_x_4, &left_ghost_y_4, 0.0f, 0.0f, left_ghost_row_4, left_ghost_col_4, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_4, &left_ghost_savekey_4, &left_ghost_rotate_4,&left_ghost_move_4, array_left_map);
 	//右のゴーストの当たり判定
-	CanMoveGhost(&right_ghost_x_4, &right_ghost_y_4, 0.0f, 0.0f, right_ghost_row_4, right_ghost_col_4, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_4, &right_ghost_savekey_4, &right_ghost_rotate_4, array_right_map);
+	CanMoveGhost(&right_ghost_x_4, &right_ghost_y_4, 960.0f, 0.0f, right_ghost_row_4, right_ghost_col_4, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_4, &right_ghost_savekey_4, &right_ghost_rotate_4,&right_ghost_move_4, array_right_map);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -538,10 +679,7 @@ void Game::Process() {
 
 
 
-
-
-
-
+	
 	//左ステージの描画
 	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f, BLUE_MAPCHIP, array_left_map);
 
@@ -550,82 +688,83 @@ void Game::Process() {
 
 
 
+	Draw(0, 100, 0xffffff, left_gauge_tu, 0.0f, 200, 50, 1 / 20, 1 / 2, GAUGE);
+
+	Draw(960, 100, 0xffffff, right_gauge_tu, 0.0f, 200, 50, 1 / 20, 1 / 2, GAUGE);
 
 
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 	if (left_cookie_count > 0) {
 		Kill(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_x_1, &left_ghost_y_1, DRAW_WIDTH, DRAW_HEIGHT,0.0f,&left_ghostpop_1);
 		
-		Draw(left_ghost_x_1, left_ghost_y_1, 0xffffffff, left_ghost_tu_1, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_1, left_ghost_y_1, 0xffffffff, left_ghost_tu, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if(left_cookie_count == 0) {
 		
 		Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, left_ghost_x_1, left_ghost_y_1, DRAW_WIDTH, DRAW_HEIGHT, left_pacman_life);
 		//左のゴーストの描画
-		Draw(left_ghost_x_1, left_ghost_y_1, 0xffffffff, left_ghost_tu_1, 0.f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_1, left_ghost_y_1, 0xffffffff, left_ghost_tu, 0.f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	if (right_cookie_count > 0) {
 		Kill(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_x_1, &right_ghost_y_1, DRAW_WIDTH, DRAW_HEIGHT,960.f, &right_ghostpop_1);
 		//右のゴーストの描画
-		Draw(right_ghost_x_1, right_ghost_y_1, 0xffffffff, right_ghost_tu_1, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_1, right_ghost_y_1, 0xffffffff, right_ghost_tu, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (right_cookie_count == 0) {
 		
 		Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x_1, right_ghost_y_1, DRAW_WIDTH, DRAW_HEIGHT, right_pacman_life);
 		//右のゴーストの描画
-		Draw(right_ghost_x_1, right_ghost_y_1, 0xffffffff, right_ghost_tu_1, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_1, right_ghost_y_1, 0xffffffff, right_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 
 
 	if (left_cookie_count > 0) {
 		Kill(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_x_2, &left_ghost_y_2, DRAW_WIDTH, DRAW_HEIGHT,0.0f,&left_ghostpop_2);
 
-		Draw(left_ghost_x_2, left_ghost_y_2, 0xffffffff, left_ghost_tu_2, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_2, left_ghost_y_2, 0xffffffff, left_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (left_cookie_count == 0) {
 
 		Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, left_ghost_x_2, left_ghost_y_2, DRAW_WIDTH, DRAW_HEIGHT, left_pacman_life);
 		//左のゴーストの描画
-		Draw(left_ghost_x_2, left_ghost_y_1, 0xffffffff, left_ghost_tu_2, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_2, left_ghost_y_2, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	if (right_cookie_count > 0) {
 		Kill(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_x_2, &right_ghost_y_2, DRAW_WIDTH, DRAW_HEIGHT,960.f, &right_ghostpop_2);
 		//右のゴーストの描画
-		Draw(right_ghost_x_2, right_ghost_y_2, 0xffffffff, right_ghost_tu_2, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_2, right_ghost_y_2, 0xffffffff, right_ghost_tu, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (right_cookie_count == 0) {
 
 		Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x_2, right_ghost_y_2, DRAW_WIDTH, DRAW_HEIGHT, right_pacman_life);
 		//右のゴーストの描画
-		Draw(right_ghost_x_2, right_ghost_y_2, 0xffffffff, right_ghost_tu_2, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_2, right_ghost_y_2, 0xffffffff, right_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 
 
 	if (left_cookie_count > 0) {
 		Kill(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_x_3, &left_ghost_y_3, DRAW_WIDTH, DRAW_HEIGHT,0.0f, &left_ghostpop_3);
 
-		Draw(left_ghost_x_3, left_ghost_y_3, 0xffffffff, left_ghost_tu_3, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_3, left_ghost_y_3, 0xffffffff, left_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (left_cookie_count == 0) {
 
 		Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, left_ghost_x_3, left_ghost_y_3, DRAW_WIDTH, DRAW_HEIGHT, left_pacman_life);
 		//左のゴーストの描画
-		Draw(left_ghost_x_3, left_ghost_y_3, 0xffffffff, left_ghost_tu_3, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_3, left_ghost_y_3, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	if (right_cookie_count > 0) {
 		Kill(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_x_3, &right_ghost_y_3, DRAW_WIDTH, DRAW_HEIGHT,960.f, &right_ghostpop_3);
 		//右のゴーストの描画
-		Draw(right_ghost_x_3, right_ghost_y_3, 0xffffffff, right_ghost_tu_3, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_3, right_ghost_y_3, 0xffffffff, right_ghost_tu, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (right_cookie_count == 0) {
 
 		Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x_3, right_ghost_y_3, DRAW_WIDTH, DRAW_HEIGHT, right_pacman_life);
 		//右のゴーストの描画
-		Draw(right_ghost_x_3, right_ghost_y_3, 0xffffffff, right_ghost_tu_3, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_3, right_ghost_y_3, 0xffffffff, right_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 
 
@@ -633,25 +772,29 @@ void Game::Process() {
 	if (left_cookie_count > 0) {
 		Kill(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_x_4, &left_ghost_y_4, DRAW_WIDTH, DRAW_HEIGHT,0.0f, &left_ghostpop_4);
 
-		Draw(left_ghost_x_4, left_ghost_y_4, 0xffffffff, left_ghost_tu_4, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_4, left_ghost_y_4, 0xffffffff, left_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (left_cookie_count == 0) {
 
 		Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, left_ghost_x_4, left_ghost_y_4, DRAW_WIDTH, DRAW_HEIGHT, left_pacman_life);
 		//左のゴーストの描画
-		Draw(left_ghost_x_4, left_ghost_y_4, 0xffffffff, left_ghost_tu_4, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(left_ghost_x_4, left_ghost_y_4, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	if (right_cookie_count > 0) {
 		Kill(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_x_4, &right_ghost_y_4, DRAW_WIDTH, DRAW_HEIGHT,960.f,&right_ghostpop_4);
 		//右のゴーストの描画
-		Draw(right_ghost_x_4, right_ghost_y_4, 0xffffffff, right_ghost_tu_4, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_4, right_ghost_y_4, 0xffffffff, right_ghost_tu, 0.625f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
 	else if (right_cookie_count == 0) {
 
 		Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x_4, right_ghost_y_4, DRAW_WIDTH, DRAW_HEIGHT, right_pacman_life);
 		//右のゴーストの描画
-		Draw(right_ghost_x_4, right_ghost_y_4, 0xffffffff, right_ghost_tu_4, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+		Draw(right_ghost_x_4, right_ghost_y_4, 0xffffffff, right_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Pop(left_ghost_x_1,&left_ghost_y_1,&left_ghostpop_1);
@@ -767,11 +910,11 @@ void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_
 ///上の関数にまとめたい
 //パックマン探す関数
 //ゴーストの移動できる方向の確認
-void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key, int** map) {
+void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey, KEY* rotate_key,int* ghost_move, int** map) {
 	if (((int)* x % (int)draw_width) == 0 && ((int)* y % (int)draw_height == 0)) {
 		int col = (*x - start_x) / draw_width;
 		int row = (*y - start_y) / draw_height;
-		if ((row + row) != -1 && (col + col_) != -1) {
+		if ((row + row_) != -1 && (col + col_) != -1) {
 			if (map[row + row_][col + col_] == 0 || map[row + row_][col + col_] == 35 || map[row + row_][col + col_] == 38) {
 				*key = *savekey;
 				*rotate_key = *savekey;
@@ -789,9 +932,11 @@ void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int ro
 					*x -= 2;
 					break;
 				default:
-
 					break;
 				}
+			}
+			else if (map[row + row_][col + col_] != 0 && map[row + row_][col + col_] != 35 && map[row + row_][col + col_] != 38) {
+				*ghost_move = rand() % 4;
 			}
 		}
 	}
@@ -810,9 +955,7 @@ void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int ro
 			*x -= 2;
 			break;
 		default:
-
 			break;
-
 		}
 	}
 }
@@ -931,7 +1074,6 @@ void Game::Pop(float enemy_x,float* enemy_y,int* enemy_pop) {
 
 
 void Game::Kill(float player_x, float player_y, float player_width, float player_height, float* enemy_x, float* enemy_y, float enemy_width, float enemy_hieght,float start_x,int* enemy_pop) {
-	
 
 	if ((player_x + player_width) > *enemy_x && player_x < (*enemy_x + enemy_width) && player_y < (*enemy_y + enemy_hieght) && (player_y + player_height) > *enemy_y) {
 		*enemy_x  = 448 + start_x;

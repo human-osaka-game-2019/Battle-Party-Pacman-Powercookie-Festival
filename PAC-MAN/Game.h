@@ -36,8 +36,8 @@ public:
 		UP    = 270,
 	};
 
-	float right_pacman_x = 992.0f;
-	float right_pacman_y = 32.0f;
+	float right_pacman_x = 416.0f + 960.f;
+	float right_pacman_y = 544.0f;
 	int right_pacman_degree = 0;
 	KEY right_pacman_rotate = KEY::STOP;
 	KEY right_pacman_key = KEY::STOP;
@@ -47,8 +47,8 @@ public:
 	int right_pacman_life = 1;
 
 
-	float left_pacman_x = 32.0f;
-	float left_pacman_y = 32.0f;
+	float left_pacman_x = 416.0f;
+	float left_pacman_y = 544.0f;
 	int left_pacman_degree = 0;
 	KEY left_pacman_rotate = KEY::STOP;
 	KEY left_pacman_key = KEY::STOP;
@@ -61,40 +61,36 @@ public:
 	float pacman_tu = 0.0f;
 	float s = 0;
 
-	float left_gauge_tu;
-	float right_gauge_tu;
+	float left_gauge_tu = 0.f;
+	float right_gauge_tu = 0.f;
 
 
+	float left_ghost_tu = 0.0f;
+	float right_ghost_tu = 0.0f;
 
 
+	float right_ghost_x_1 = 416.0f + 960.f;
+	float right_ghost_y_1 = 352.0f;
+	float left_ghost_x_1 = 416.0f;
+	float left_ghost_y_1 = 352.0f;
+	
 
-	float right_ghost_x_1 = 1056.0f;
-	float right_ghost_y_1 = 32.0f;
-	float left_ghost_x_1 = 640.0f;
-	float left_ghost_y_1 = 32.0f;
-	float left_ghost_tu_1 = 0.0f;
-	float right_ghost_tu_1 = 0.0f;
+	float right_ghost_x_2 = 448.0f + 960.f;
+	float right_ghost_y_2 = 352.0f;
+	float left_ghost_x_2 = 448.0f;
+	float left_ghost_y_2 = 352.0f;
+	
 
-	float right_ghost_x_2 = 1056.0f;
-	float right_ghost_y_2 = 32.0f;
-	float left_ghost_x_2 = 640.0f;
-	float left_ghost_y_2 = 32.0f;
-	float left_ghost_tu_2 = 0.0f;
-	float right_ghost_tu_2 = 0.0f;
-
-	float right_ghost_x_3 = 1056.0f;
-	float right_ghost_y_3 = 32.0f;
-	float left_ghost_x_3 = 640.0f;
-	float left_ghost_y_3 = 32.0f;
-	float left_ghost_tu_3 = 0.0f;
-	float right_ghost_tu_3 = 0.0f;
-
-	float right_ghost_x_4 = 1056.0f;
-	float right_ghost_y_4 = 32.0f;
-	float left_ghost_x_4 = 640.0f;
-	float left_ghost_y_4 = 32.0f;
-	float left_ghost_tu_4 = 0.0f;
-	float right_ghost_tu_4 = 0.0f;
+	float right_ghost_x_3 = 384.0f + 960.f;
+	float right_ghost_y_3 = 352.0f;
+	float left_ghost_x_3 = 384.0f;
+	float left_ghost_y_3 = 352.0f;
+	
+	float right_ghost_x_4 = 352.0f + 960.f;
+	float right_ghost_y_4 = 352.0f;
+	float left_ghost_x_4 = 352.0f;
+	float left_ghost_y_4 = 352.0f;
+	
 
 
 
@@ -203,7 +199,7 @@ public:
 	//当たり判定
 	void JudgeCollision(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key, int** map);
 	//ゴーストが動けるかどうか
-	void CanMoveGhost(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key ,int** map);
+	void CanMoveGhost(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key , int* ghost_move,int** map);
 	//パックマンが死ぬ処理
 	void Die(float player_x, float player_y, float player_width, float player_height, float enemy_x, float enemy_y, float enemy_width, float enemy_hieght, int pacman_life);
 
