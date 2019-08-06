@@ -101,11 +101,11 @@ void DirectX::InitPresentParameters(HWND hWnd)
 	D3dPresentParameters.BackBufferHeight = WINDOW_HEIGHT;
 	D3dPresentParameters.BackBufferFormat = D3DFMT_UNKNOWN;
 	D3dPresentParameters.BackBufferCount = 1;
-	//D3dPresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;
-	//D3dPresentParameters.MultiSampleQuality = 0;
+	D3dPresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;
+	D3dPresentParameters.MultiSampleQuality = 0;
 	D3dPresentParameters.hDeviceWindow = hWnd;
 	D3dPresentParameters.EnableAutoDepthStencil = FALSE;
-	//D3dPresentParameters.AutoDepthStencilFormat = D3DFMT_A1R5G5B5;
+	D3dPresentParameters.AutoDepthStencilFormat = D3DFMT_A1R5G5B5;
 	D3dPresentParameters.Flags = 0;
 	D3dPresentParameters.FullScreen_RefreshRateInHz = 0;
 	D3dPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;

@@ -29,25 +29,63 @@ public:
 	};
 
 	enum KEY {
+		STOP = -1,
 		RIGHT = 0,
 		DOWN  = 90,
 		LEFT  = 180,
 		UP    = 270,
-		STOP,
 	};
 
+	float right_pacman_x = 992.0f;
+	float right_pacman_y = 32.0f;
+	float left_pacman_x = 32.0f;
+	float left_pacman_y = 32.0f;
+	float pacman_tu = 0.0f;
+	int left_pacman_degree = 0;
+	int right_pacman_degree = 0;
 
-	KEY left_key = KEY::STOP;
-	KEY right_key = KEY::STOP;
+	float right_ghost_x = 1056.0f;
+	float right_ghost_y = 32.0f;
+	float left_ghost_x = 640.0f;
+	float left_ghost_y = 32.0f;
+	float left_ghost_tu = 0.0f;
+	float right_ghost_tu = 0.0f;
+
+	int flamecount = 0;
+
+	float s = 0;
+
+	float left_gauge_tu;
+	float right_gauge_tu;
+
+
+	KEY left_pacman_key = KEY::STOP;
+	KEY right_pacman_key = KEY::STOP;
 	KEY left_pacman_savekey = KEY::STOP;
 	KEY right_pacman_savekey = KEY::STOP;
+	KEY left_ghost_key = KEY::STOP;
+	KEY right_ghost_key = KEY::STOP;
 	KEY left_ghost_savekey = KEY::STOP;
 	KEY right_ghost_savekey = KEY::STOP;
 
-	int left_row = 0;
-	int left_col = 0;
-	int right_row = 0;
-	int right_col = 0;
+	int left_pacman_row = 0;
+	int left_pacman_col = 0;
+	int right_pacman_row = 0;
+	int right_pacman_col = 0;
+	int left_ghost_row = 0;
+	int left_ghost_col = 0;
+	int right_ghost_row = 0;
+	int right_ghost_col = 0;
+	float ghostmove_x = 0;
+	float ghostmove_y = 0;
+
+	KEY left_pacman_rotate = KEY::STOP;
+	KEY right_pacman_rotate = KEY::STOP;
+	KEY left_ghost_rotate = KEY::STOP;
+	KEY right_ghost_rotate = KEY::STOP;
+
+	int left_ghost_move = 3;
+	int pacman_life = 3;
 
 	Game::SCENE_PAHSE Phase = Game::LOAD;
 
@@ -57,9 +95,10 @@ public:
 
 	
 	//当たり判定
-	void JudgeCollision(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey, int** map);
-	//パックマンを探す処理
-	void CanMoveGhost(int** map);
-
+	void JudgeCollision(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key, int** map);
+	//ゴーストが動けるかどうか
+	void CanMoveGhost(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key ,int** map);
+	//パックマンが死ぬ処理
+	void Die(float player_x, float player_y, float player_width, float player_height, float enemy_x, float enemy_y, float enemy_width, float enemy_hieght);
 };
 #endif
