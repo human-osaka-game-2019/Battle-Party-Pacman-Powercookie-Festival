@@ -24,9 +24,9 @@ HRESULT DirectX::BuildDxDevice(HWND hWnd, const TCHAR* filepath)
 		return E_FAIL;
 	}
 
-	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	//pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
 
-	pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	
 
 	return S_OK;
 }
@@ -60,10 +60,7 @@ HRESULT DirectX::InitD3Device(HWND hWnd, const TCHAR* FilePath) {
 		}
 	}
 
-	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-	pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVDESTALPHA);
-
+	
 	return S_OK;
 }
 
@@ -100,8 +97,8 @@ void DirectX::InitPresentParameters(HWND hWnd)
 {
 	ZeroMemory(&D3dPresentParameters, sizeof(D3dPresentParameters));
 
-	D3dPresentParameters.BackBufferWidth = 1280;
-	D3dPresentParameters.BackBufferHeight = 720;
+	D3dPresentParameters.BackBufferWidth = WINDOW_WIDTH;
+	D3dPresentParameters.BackBufferHeight = WINDOW_HEIGHT;
 	D3dPresentParameters.BackBufferFormat = D3DFMT_UNKNOWN;
 	D3dPresentParameters.BackBufferCount = 1;
 	D3dPresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;
@@ -113,7 +110,7 @@ void DirectX::InitPresentParameters(HWND hWnd)
 	D3dPresentParameters.FullScreen_RefreshRateInHz = 0;
 	D3dPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 	D3dPresentParameters.SwapEffect = D3DSWAPEFFECT_DISCARD;
-	D3dPresentParameters.Windowed = TRUE;
+	D3dPresentParameters.Windowed = true;
 }
 
 void DirectX::UpdateKeyState() {
@@ -173,3 +170,7 @@ void DirectX::All_Release() {
 	pDirect3D = nullptr;
 }
 
+double DirectX::to_Rad(double degree) {
+
+	return degree * atan(1.0) * 4.0 / 180.0;
+}

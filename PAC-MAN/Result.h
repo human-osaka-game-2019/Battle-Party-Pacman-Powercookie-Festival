@@ -20,10 +20,6 @@ public:
 
 private:
 
-	FLOAT window_width = 1920;
-	FLOAT window_height = 1080;
-
-
 	void Loading();
 	void Process();
 	void Release();
