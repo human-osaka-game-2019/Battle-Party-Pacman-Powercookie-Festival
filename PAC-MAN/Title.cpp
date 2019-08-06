@@ -32,8 +32,12 @@ void Title::Loading() {
 	LoadTexture("select_title_ui.png", TITLE_SELECT_UI);
 	LoadTexture("yellow_pacman.png", TITLE_PACMAN);
 
+	// 選択UIをリセット
 	currentID = select_ui_start;
-
+	pacman_y = 795;
+	title_select_ui_tu_a = 0.5f;
+	title_select_ui_tu_b = 0.0f;
+	title_select_ui_tu_c = 0.0f;
 	Phase = PROCESSING;
 }
 

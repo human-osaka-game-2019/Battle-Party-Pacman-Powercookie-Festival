@@ -93,7 +93,6 @@ public:
 	void Process();
 	void Release();
 
-	
 	//当たり判定
 	void JudgeCollision(float* x, float* y, float start_x, float start_y, int row_, int col_, float draw_width, float draw_height, KEY* key, KEY* savekey,KEY* rotate_key, int** map);
 	//ゴーストが動けるかどうか

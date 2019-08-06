@@ -41,8 +41,8 @@ private:
 	float pacman_y = 795;
 	float title_pacman_tu = 0.0f;
 
-	//ゲームかヘルプか見分ける変数
-	SCENE nextscene = GAME;
+	// ゲームかヘルプか、１ｐか２ｐの勝利を見分ける変数
+		SCENE nextscene = GAME;
 
 	enum SelectUI_ID
 	{

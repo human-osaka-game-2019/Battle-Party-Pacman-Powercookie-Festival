@@ -27,7 +27,12 @@ enum TEX {
 	COOKIE,
 	POWER_COOKIE,
 	GAUGE,
-	TEST_MAPCHIP,
+	BLUE_MAPCHIP,
+	PINK_MAPCHIP,
+	RESULT_BACK_RIGHT_PLAYER,
+	RESULT_SELECT_UI,
+	RESULT_LOGO,
+	RESULT_BACK_LEFT_PLAYER,
 };
 
 enum SCENE {
@@ -35,11 +40,15 @@ enum SCENE {
 	HELP,
 	GAME,
 	RESULT,
-	EXIT
+	RESULT_1P,
+	RESULT_2P,
+	EXIT,
 };
 
 extern DirectX dx;
 extern SCENE scene;
+
+
 
 //WinMain関数
 INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PSTR lpCmdline, _In_ int nCmdShow);

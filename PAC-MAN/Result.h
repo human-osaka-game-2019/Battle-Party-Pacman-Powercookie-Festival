@@ -18,10 +18,27 @@ public:
 	//リザルトのフェーズの宣言
 	Result::SCENE_PHASE Phase = Result::LOAD;
 
+
+	
+
 private:
+
+	enum oneORtwo {
+
+		one,
+		two,
+	};
 
 	void Loading();
 	void Process();
 	void Release();
+
+
+	int flamecount_result = 0;
+	float one_logo_tu = 0.0f;
+	float two_logo_tu = 0.0f;
+
+	oneORtwo one_or_two;
+	
 };
 #endif

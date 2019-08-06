@@ -1,6 +1,8 @@
 ﻿#include "Game.h"
-#include <random>
-#include <iostream>
+//#include <random>
+//#include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 MapchipLoading Mp;
 DrawMap map;
@@ -28,7 +30,8 @@ void Game::Game_Scene() {
 //ゲームのテクスチャの読み込み
 void Game::Loading() {
 
-	LoadTexture("map_test.png", TEST_MAPCHIP);
+	LoadTexture("pacman_stage_blue.png", BLUE_MAPCHIP);
+	LoadTexture("pacman_stage_pink.png", PINK_MAPCHIP);
 	LoadTexture("pacman.png", PACMAN);
 	LoadTexture("Ghost.png", GHOST);
 	LoadTexture("GameBack.png", GAME_BACK);
@@ -44,10 +47,10 @@ void Game::Process() {
 	flamecount++;
 
 	//左ステージの描画
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f);
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f,BLUE_MAPCHIP);
 
 	//右ステージの描画
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f);
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f,PINK_MAPCHIP);
 
 	//左のゴーストの描画
 	Draw(left_ghost_x, left_ghost_y, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
@@ -170,21 +173,28 @@ void Game::Process() {
 		right_pacman_col = 1;
 	}
 
-	std::mt19937 rand{ std::random_device{}() };
-
-	std::uniform_int_distribution<int> a(0, 3);
+	//std::mt19937 rand{ std::random_device{}() };
+	//std::uniform_int_distribution<int> a(0, 3);
 	
-	if ((map.left_map[(int)(left_ghost_y / DRAW_WIDTH) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_WIDTH) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_WIDTH) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 38)) {
-		int save = left_ghost_move;
-		for (int i = 0; i < 1000; i++) {
-			left_ghost_move = a(rand);
-			if (save == left_ghost_move) {
-				continue;
+
+	if ((int)(left_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 38)) {
+			int save = left_ghost_move;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				left_ghost_move = rand() % 4;//a(rand);
+				if (save == left_ghost_move) {
+					continue;
+				}
+				break;
 			}
-			break;
 		}
 	}
-	
+
+	if ( map.left_map[(int)(left_ghost_y / DRAW_HEIGHT)][(int)(left_ghost_x / DRAW_WIDTH)] == 35)
+	{
+		map.left_map[(int)(left_ghost_y / DRAW_HEIGHT)][(int)(left_ghost_x / DRAW_WIDTH)] = 0;
+	}
 	
 
 	switch (left_ghost_move) {
@@ -240,7 +250,13 @@ void Game::Process() {
 		break;
 	}*/
 
-
+	//左画面の真ん中の逆から出てくる処理
+	if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (0 == (int)(left_pacman_x / DRAW_WIDTH))) {
+		left_pacman_x = DRAW_WIDTH * 27;
+	}else if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (27 == (int)(left_pacman_x / DRAW_WIDTH))) {
+		left_pacman_x = 0.0f;
+	}
+	 
 
 	///下の二ついらないかも
 	//マップの二十配列を渡すための変数
@@ -257,7 +273,7 @@ void Game::Process() {
 	//左のパックマンの当たり判定
 	JudgeCollision(&left_pacman_x, &left_pacman_y, 0.0f, 0.0f, left_pacman_row, left_pacman_col, DRAW_WIDTH, DRAW_HEIGHT, &left_pacman_key, &left_pacman_savekey,&left_pacman_rotate, array_left_map);
 	//右のパックマンの当たり判定
-	JudgeCollision(&right_pacman_x, &right_pacman_y, 448.f + 160.0f, 0.0f, right_pacman_row, right_pacman_col, DRAW_WIDTH, DRAW_HEIGHT, &right_pacman_key, &right_pacman_savekey,&right_pacman_rotate, array_right_map);
+	JudgeCollision(&right_pacman_x, &right_pacman_y, 896.0f + 64.f, 0.0f, right_pacman_row, right_pacman_col, DRAW_WIDTH, DRAW_HEIGHT, &right_pacman_key, &right_pacman_savekey,&right_pacman_rotate, array_right_map);
 	//左のゴーストの当たり判定
 	CanMoveGhost(&left_ghost_x, &left_ghost_y, 0.0f, 0.0f, left_ghost_row, left_ghost_col, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key, &left_ghost_savekey, &left_ghost_rotate, array_left_map);
 	//右のゴーストの当たり判定
@@ -269,12 +285,7 @@ void Game::Process() {
 	Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x, right_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
 
 
-	//左画面の真ん中の逆から出てくる処理
-	if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (27 == (int)(left_pacman_x / DRAW_WIDTH))) {
-		left_pacman_x = 0.0f;
-	}else if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (0 == (int)(left_pacman_x / DRAW_WIDTH))) {
-		left_pacman_x = DRAW_WIDTH * 27;
-	}
+	
 	//リリースのフェーズへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;
@@ -329,7 +340,6 @@ void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_
 			}
 		}
 	}
-	
 	else {
 		switch (*key) {
 		case RIGHT:
@@ -362,22 +372,22 @@ void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int ro
 	if (((int)* x % (int)draw_width) == 0 && ((int)* y % (int)draw_height == 0)) {
 		int col = (*x - start_x) / draw_width;
 		int row = (*y - start_y) / draw_height;
-		*rotate_key = *savekey;
 		if ((row + row) != -1 && (col + col_) != -1) {
-			
 			if (map[row + row_][col + col_] == 0 || map[row + row_][col + col_] == 35 || map[row + row_][col + col_] == 38) {
+				*key = *savekey;
+				*rotate_key = *savekey;
 				switch (*key) {
 				case UP:
-					*y -= 1;
+					*y -= 2;
 					break;
 				case DOWN:
-					*y += 1;
+					*y += 2;
 					break;
 				case RIGHT:
-					*x += 1;
+					*x += 2;
 					break;
 				case LEFT:
-					*x -= 1;
+					*x -= 2;
 					break;
 				default:
 
@@ -387,19 +397,18 @@ void Game::CanMoveGhost(float* x, float* y, float start_x, float start_y, int ro
 		}
 	}
 	else {
-		*key = *savekey;
 		switch (*key) {
 		case UP:
-			*y -= 1;
+			*y -= 2;
 			break;
 		case DOWN:
-			*y += 1;
+			*y += 2;
 			break;
 		case RIGHT:
-			*x += 1;
+			*x += 2;
 			break;
 		case LEFT:
-			*x -= 1;
+			*x -= 2;
 			break;
 		default:
 
@@ -483,6 +492,6 @@ void Game::Die(float player_x,float player_y,float player_width,float player_hei
 	}
 	if (pacman_life == 0) {
 		Phase = RELEASES;
-		pacman_life = 3;
+		pacman_life = 1;
 	}
 }

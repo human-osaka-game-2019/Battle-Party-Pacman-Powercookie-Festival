@@ -111,7 +111,7 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 
 
 
-void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y)
+void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y, int texture)
 {
 	for (int i = 0; i < map_size_height; i++)
 	{
@@ -140,16 +140,15 @@ void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_w
 			float chip_pos_x = (float)(chip_id % width_num) * mapchip_width;
 			float chip_pos_y = (float)(chip_id / height_num) * mapchip_height;
 
-			DrawMap::tetureprint(draw_pos_x + draw_width * j, draw_pos_y + draw_height * i, draw_width, draw_height, chip_pos_x / texture_width, chip_pos_y / texture_height, mapchip_width / texture_width, mapchip_height / texture_height);
+			DrawMap::textureprint(draw_pos_x + draw_width * j, draw_pos_y + draw_height * i, draw_width, draw_height, chip_pos_x / texture_width, chip_pos_y / texture_height, mapchip_width / texture_width, mapchip_height / texture_height,texture);
 		}
 	}
 }
 
 //マップチップ描画
-int DrawMap::tetureprint(int drawpos_x, int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y, float width_num, float height_num) {
+void DrawMap::textureprint(int drawpos_x, int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y, float width_num, float height_num,int texture) {
 
-	Draw(drawpos_x, drawpos_y, 0xffffffff, chip_pos_x, chip_pos_y, mapcip_width, mapchip_height, width_num, height_num, TEST_MAPCHIP);
+	Draw(drawpos_x, drawpos_y, 0xffffffff, chip_pos_x, chip_pos_y, mapcip_width, mapchip_height, width_num, height_num, texture,0);
 
-	return 0;
 }
 
