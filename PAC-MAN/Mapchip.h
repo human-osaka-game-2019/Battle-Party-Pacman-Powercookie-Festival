@@ -23,7 +23,7 @@ class DrawMap {
 
 public:
 
-	void DrawMapChip(int map_size_width, int map_size_height, float texture_width, float texture_height, float mapchip_width, float mapchip_height, float draw_width, float draw_height, float draw_pos_x, float draw_pos_y, int texture);
+	void DrawMapChip(int map_size_width, int map_size_height, float texture_width, float texture_height, float mapchip_width, float mapchip_height, float draw_width, float draw_height, float draw_pos_x, float draw_pos_y, int texture,int** map);
 	
 	void textureprint(int drawpos_x,int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y,float width_num,float height_num, int texture);
 
@@ -41,9 +41,9 @@ public:
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	32, 10,	10,	23,	 0,	24,	23,	 0,	24,	10,	10,	31,	 9,	35,	3,	 0,  0,  0,  0,  0,
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	 9,  0,	 0,	 0,	 0,	 0,	 0,	 0,	 0,	 0,	 0,	11,	 9,	35,	3,	 0,  0,  0,  0,  0,
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	 9,  0,	17,	 4,	 4,	37,	37,	 4,	 4,	18,	 0,	11,	 9,	35,	3,	 0,  0,  0,  0,  0,
-   2,   2,	 2,	 2,	 2,	16,	35,	24,	23,  0,	 3,	 0,	 0,	 0,	 0,	 0,	 0,	 1,	 0,	24,	23,	35,	14,	 2,  2,	 2,	 2,	 2,
-   0,   0,	 0,	 0,	 0,	 0,	35,	 0,	 0,  0,	 3,	 0,	 0,	 0,	 0,	 0,	 0,	 1,	 0,	 0,	 0,	35,	 0,	 0,  0,	 0,	 0,	 0,
-   4,   4,	 4,	 4,	 4,	15,	35,	21,	22,  0,	 3,	 0,	 0,	 0,	 0,	 0,	 0,	 1,	 0,	21,	22,	35,	13,	 4,  4,	 4,	 4,	 4,
+   2,   2,	 2,	 2,	 2,	16,	35,	24,	23,  0,	 3,	 0, 40,	 0,	 0,	 40, 0,	 1,	 0,	24,	23,	35,	14,	 2,  2,	 2,	 2,	 2,
+   0,	0,	0,	 0,	 0,	 0,	35,	 0,	 0,  0,	 3,	 0, 40,	 40, 40, 40, 0,	 1,	 0,	 0,	 0,	35,	 0,	 0,  0,	 0,	 0,	 0,
+   4,   4,	 4,	 4,	 4,	15,	35,	21,	22,  0,	 3,	 0,	 0,  0,  0,  0,  0,  1,	 0,	21,	22,	35,	13,	 4,  4,	 4,	 4,	 4,
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	 9,  0,	20,	 2,	 2,	 2,	 2,	 2,	 2,	19,	 0,	11,	 9,	35,	3,	 0,  0,  0,  0,  0,
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	 9,  0,	 0,	 0,	 0,  0,	 0,	 0,	 0,	 0,	 0,	11,	 9,	35,	3,	 0,  0,  0,  0,  0,
    0,   0,	 0,	 0,	 0,	 1,	35,	11,	 9,  0,	21,	12,	12,	12,	12,	12,	12,	22,	 0,	11,	 9,	35,	3,	 0,  0,  0,  0,  0,

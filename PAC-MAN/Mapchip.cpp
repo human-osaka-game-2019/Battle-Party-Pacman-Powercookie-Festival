@@ -111,13 +111,13 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 
 
 
-void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y, int texture)
+void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y, int texture,int** map)
 {
 	for (int i = 0; i < map_size_height; i++)
 	{
 		for (int j = 0; j < map_size_width; j++)
 		{
-			int chip_id = left_map[i][j];
+			int chip_id = map[i][j];
 			if (chip_id == 0)
 			{
 				continue;

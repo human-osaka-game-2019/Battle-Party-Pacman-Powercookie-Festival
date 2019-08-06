@@ -45,24 +45,6 @@ void Game::Process() {
 
 
 	flamecount++;
-
-	//左ステージの描画
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f,BLUE_MAPCHIP);
-
-	//右ステージの描画
-	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f,PINK_MAPCHIP);
-
-	//左のゴーストの描画
-	Draw(left_ghost_x, left_ghost_y, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
-
-	//右のゴーストの描画
-	Draw(right_ghost_x, right_ghost_y, 0xffffffff, right_ghost_tu, 0.2f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
-
-	//左のパックマンの描画
-	Draw(left_pacman_x, left_pacman_y, 0xffffffff, pacman_tu, 0.0f, 32, 32, 0.25f, 0.5f, PACMAN, left_pacman_rotate);
-
-	//右のパックマンの描画
-	Draw(right_pacman_x, right_pacman_y, 0xffffffff, pacman_tu, 0.0f, 32, 32, 0.25f, 0.5f, PACMAN, right_pacman_rotate);
 	
 	///アニメーション関数ですべてのキャラクターのアニメーショできるようにする
 	//パックマンのアニメーション
@@ -176,14 +158,168 @@ void Game::Process() {
 	//std::mt19937 rand{ std::random_device{}() };
 	//std::uniform_int_distribution<int> a(0, 3);
 	
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if ((int)(left_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x) % (int)(DRAW_WIDTH)) {
-		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col] != 38)) {
-			int save = left_ghost_move;
+		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_1] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_1] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_1][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_1] != 38)) {
+			int save = left_ghost_move_1;
 			for (int i = 0; i < 1000; i++) {
 				srand((unsigned int)time(NULL));
-				left_ghost_move = rand() % 4;//a(rand);
-				if (save == left_ghost_move) {
+				left_ghost_move_1 = rand() % 4;//a(rand);
+				if (save == left_ghost_move_1) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+	switch (left_ghost_move_1) {
+	case 0:
+		left_ghost_savekey_1 = UP;
+		left_ghost_row_1 = -1;
+		left_ghost_col_1 = 0;
+		break;
+	case 1:
+		left_ghost_savekey_1 = DOWN;
+		left_ghost_row_1 = 1;
+		left_ghost_col_1 = 0;
+		break;
+	case 2:
+		left_ghost_savekey_1 = RIGHT;
+		left_ghost_row_1 = 0;
+		left_ghost_col_1= 1;
+		break;
+	case 3:
+		left_ghost_savekey_1 = LEFT;
+		left_ghost_row_1 = 0;
+		left_ghost_col_1 = -1;
+		break;
+	default:
+
+		break;
+	}
+	if ((int)(left_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_2] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_2] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_2][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_2] != 38)) {
+			int save = left_ghost_move_2;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				left_ghost_move_2 = rand() % 4;//a(rand);
+				if (save == left_ghost_move_2) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+	switch (left_ghost_move_2) {
+	case 0:
+		left_ghost_savekey_2 = UP;
+		left_ghost_row_2 = -1;
+		left_ghost_col_2 = 0;
+		break;
+	case 1:
+		left_ghost_savekey_2 = DOWN;
+		left_ghost_row_2 = 1;
+		left_ghost_col_2 = 0;
+		break;
+	case 2:
+		left_ghost_savekey_2 = RIGHT;
+		left_ghost_row_2 = 0;
+		left_ghost_col_2 = 1;
+		break;
+	case 3:
+		left_ghost_savekey_2 = LEFT;
+		left_ghost_row_2 = 0;
+		left_ghost_col_2 = -1;
+		break;
+	default:
+
+		break;
+	}
+	if ((int)(left_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_3] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_3] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_3][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_3] != 38)) {
+			int save = left_ghost_move_3;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				left_ghost_move_3 = rand() % 4;//a(rand);
+				if (save == left_ghost_move_3) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+	switch (left_ghost_move_3) {
+	case 0:
+		left_ghost_savekey_3 = UP;
+		left_ghost_row_3 = -1;
+		left_ghost_col_3 = 0;
+		break;
+	case 1:
+		left_ghost_savekey_3 = DOWN;
+		left_ghost_row_3 = 1;
+		left_ghost_col_3 = 0;
+		break;
+	case 2:
+		left_ghost_savekey_3 = RIGHT;
+		left_ghost_row_3 = 0;
+		left_ghost_col_3 = 1;
+		break;
+	case 3:
+		left_ghost_savekey_3 = LEFT;
+		left_ghost_row_3 = 0;
+		left_ghost_col_3 = -1;
+		break;
+	default:
+
+		break;
+	}
+	if ((int)(left_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(left_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_4] != 0) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_4] != 35) && (map.left_map[(int)(left_ghost_y / DRAW_HEIGHT) + left_ghost_row_4][(int)(left_ghost_x / DRAW_WIDTH) + left_ghost_col_4] != 38)) {
+			int save = left_ghost_move_4;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				left_ghost_move_4 = rand() % 4;//a(rand);
+				if (save == left_ghost_move_4) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+	switch (left_ghost_move_4) {
+	case 0:
+		left_ghost_savekey_4 = UP;
+		left_ghost_row_4 = -1;
+		left_ghost_col_4 = 0;
+		break;
+	case 1:
+		left_ghost_savekey_4 = DOWN;
+		left_ghost_row_4 = 1;
+		left_ghost_col_4 = 0;
+		break;
+	case 2:
+		left_ghost_savekey_4 = RIGHT;
+		left_ghost_row_4 = 0;
+		left_ghost_col_4 = 1;
+		break;
+	case 3:
+		left_ghost_savekey_4 = LEFT;
+		left_ghost_row_4 = 0;
+		left_ghost_col_4 = -1;
+		break;
+	default:
+
+		break;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	if ((int)(right_ghost_y_1) % (int)(DRAW_HEIGHT) == 0 && (int)(right_ghost_x_1) % (int)(DRAW_WIDTH)) {
+		if ((map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 0) && (map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 35) && (map.right_map[(int)(right_ghost_y_1 / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x_1 / DRAW_WIDTH) + right_ghost_col_1] != 38)) {
+			int save = right_ghost_move_1;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				right_ghost_move_1 = rand() % 4;//a(rand);
+				if (save == right_ghost_move_1) {
 					continue;
 				}
 				break;
@@ -191,64 +327,149 @@ void Game::Process() {
 		}
 	}
 
-	if ( map.left_map[(int)(left_ghost_y / DRAW_HEIGHT)][(int)(left_ghost_x / DRAW_WIDTH)] == 35)
-	{
-		map.left_map[(int)(left_ghost_y / DRAW_HEIGHT)][(int)(left_ghost_x / DRAW_WIDTH)] = 0;
-	}
-	
-
-	switch (left_ghost_move) {
+	switch (right_ghost_move_1) {
 	case 0:
-		left_ghost_savekey = UP;
-		left_ghost_row = -1;
-		left_ghost_col = 0;
+		right_ghost_savekey_1 = UP;
+		right_ghost_row_1 = -1;
+		right_ghost_col_1 = 0;
 		break;
 	case 1:
-		left_ghost_savekey = DOWN;
-		left_ghost_row = 1;
-		left_ghost_col = 0;
+		right_ghost_savekey_1 = DOWN;
+		right_ghost_row_1 = 1;
+		right_ghost_col_1 = 0;
 		break;
 	case 2:
-		left_ghost_savekey = RIGHT;
-		left_ghost_row = 0;
-		left_ghost_col = 1;
+		right_ghost_savekey_1 = RIGHT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = 1;
 		break;
 	case 3:
-		left_ghost_savekey = LEFT;
-		left_ghost_row = 0;
-		left_ghost_col = -1;
+		right_ghost_savekey_1 = LEFT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = -1;
 		break;
 	default:
 
 		break;
 	}
+	if ((int)(right_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(right_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.right_map[(int)(left_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 0) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 35) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 38)) {
+			int save = right_ghost_move_1;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				right_ghost_move_1 = rand() % 4;//a(rand);
+				if (save == right_ghost_move_1) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
 
-	/*int right_ghost_move = a(rand);
-	switch (right_ghost_move) {
+	switch (right_ghost_move_1) {
 	case 0:
-		right_ghost_savekey = UP;
-		right_ghost_row = -1;
-		right_ghost_col = 0;
+		right_ghost_savekey_1 = UP;
+		right_ghost_row_1 = -1;
+		right_ghost_col_1 = 0;
 		break;
 	case 1:
-		right_ghost_savekey = DOWN;
-		right_ghost_row = 1;
-		right_ghost_col = 0;
+		right_ghost_savekey_1 = DOWN;
+		right_ghost_row_1 = 1;
+		right_ghost_col_1 = 0;
 		break;
 	case 2:
-		right_ghost_savekey = RIGHT;
-		right_ghost_row = 0;
-		right_ghost_col = 1;
+		right_ghost_savekey_1 = RIGHT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = 1;
 		break;
 	case 3:
-		right_ghost_savekey = LEFT;
-		right_ghost_row = 0;
-		right_ghost_col = -1;
+		right_ghost_savekey_1 = LEFT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = -1;
 		break;
 	default:
 
 		break;
-	}*/
+	}
+	if ((int)(right_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(right_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.right_map[(int)(left_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 0) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 35) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 38)) {
+			int save = right_ghost_move_1;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				right_ghost_move_1 = rand() % 4;//a(rand);
+				if (save == right_ghost_move_1) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+
+	switch (right_ghost_move_1) {
+	case 0:
+		right_ghost_savekey_1 = UP;
+		right_ghost_row_1 = -1;
+		right_ghost_col_1 = 0;
+		break;
+	case 1:
+		right_ghost_savekey_1 = DOWN;
+		right_ghost_row_1 = 1;
+		right_ghost_col_1 = 0;
+		break;
+	case 2:
+		right_ghost_savekey_1 = RIGHT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = 1;
+		break;
+	case 3:
+		right_ghost_savekey_1 = LEFT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = -1;
+		break;
+	default:
+
+		break;
+	}
+	if ((int)(right_ghost_y) % (int)(DRAW_HEIGHT) == 0 && (int)(right_ghost_x) % (int)(DRAW_WIDTH)) {
+		if ((map.right_map[(int)(left_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 0) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 35) && (map.right_map[(int)(right_ghost_y / DRAW_HEIGHT) + right_ghost_row_1][(int)(right_ghost_x / DRAW_WIDTH) + right_ghost_col_1] != 38)) {
+			int save = right_ghost_move_1;
+			for (int i = 0; i < 1000; i++) {
+				srand((unsigned int)time(NULL));
+				right_ghost_move_1 = rand() % 4;//a(rand);
+				if (save == right_ghost_move_1) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+
+	switch (right_ghost_move_1) {
+	case 0:
+		right_ghost_savekey_1 = UP;
+		right_ghost_row_1 = -1;
+		right_ghost_col_1 = 0;
+		break;
+	case 1:
+		right_ghost_savekey_1 = DOWN;
+		right_ghost_row_1 = 1;
+		right_ghost_col_1 = 0;
+		break;
+	case 2:
+		right_ghost_savekey_1 = RIGHT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = 1;
+		break;
+	case 3:
+		right_ghost_savekey_1 = LEFT;
+		right_ghost_row_1 = 0;
+		right_ghost_col_1 = -1;
+		break;
+	default:
+
+		break;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//左画面の真ん中の逆から出てくる処理
 	if ((14 == (int)(left_pacman_y / DRAW_HEIGHT)) && (0 == (int)(left_pacman_x / DRAW_WIDTH))) {
@@ -258,7 +479,12 @@ void Game::Process() {
 	}
 	 
 
-	///下の二ついらないかも
+
+
+
+
+
+
 	//マップの二十配列を渡すための変数
 	int* array_left_map[31];
 	int* array_right_map[31];
@@ -270,22 +496,130 @@ void Game::Process() {
 		array_right_map[i] = map.right_map[i];
 	}
 
+
+
+
+
+
+
+
 	//左のパックマンの当たり判定
 	JudgeCollision(&left_pacman_x, &left_pacman_y, 0.0f, 0.0f, left_pacman_row, left_pacman_col, DRAW_WIDTH, DRAW_HEIGHT, &left_pacman_key, &left_pacman_savekey,&left_pacman_rotate, array_left_map);
 	//右のパックマンの当たり判定
 	JudgeCollision(&right_pacman_x, &right_pacman_y, 896.0f + 64.f, 0.0f, right_pacman_row, right_pacman_col, DRAW_WIDTH, DRAW_HEIGHT, &right_pacman_key, &right_pacman_savekey,&right_pacman_rotate, array_right_map);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//左のゴーストの当たり判定
-	CanMoveGhost(&left_ghost_x, &left_ghost_y, 0.0f, 0.0f, left_ghost_row, left_ghost_col, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key, &left_ghost_savekey, &left_ghost_rotate, array_left_map);
+	CanMoveGhost(&left_ghost_x, &left_ghost_y, 0.0f, 0.0f, left_ghost_row_1, left_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_key_1, &left_ghost_savekey_1, &left_ghost_rotate_1, array_left_map);
 	//右のゴーストの当たり判定
-	CanMoveGhost(&right_ghost_x, &right_ghost_y, 0.0f, 0.0f, right_ghost_row, right_ghost_col, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key, &right_ghost_savekey, &right_ghost_rotate, array_right_map);
+	CanMoveGhost(&right_ghost_x, &right_ghost_y, 0.0f, 0.0f, right_ghost_row_1, right_ghost_col_1, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_key_1, &right_ghost_savekey_1, &right_ghost_rotate_1, array_right_map);
 
-	//パックマンの残機が減り死ぬ関数
-	Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT,left_ghost_x,left_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
-	//パックマンの残機が減り死ぬ関数
-	Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x, right_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
+
+
+
+
+
+
+
+
+
+	Eat(array_left_map, left_pacman_x, left_pacman_y,&left_cookie,&left_powercookie);
+
+	Eat(array_right_map, right_pacman_x, right_pacman_y,&right_cookie,&right_powercookie);
+	
+
+
+
+
+
+
+	if (left_powercookie == 1 && dx.KeyState[DIK_Q] == dx.PRESS) {
+		left_cookie_count = 60*8;
+		left_powercookie = 0;
+	}
+	
+	if (right_powercookie == 1 && dx.KeyState[DIK_W] == dx.PRESS) {
+		right_cookie_count = 60*8;
+		right_powercookie = 0;
+	}
+	
+	if (left_cookie_count != 0) {
+		left_cookie_count--;
+	}
+	if (right_cookie_count != 0) {
+		right_cookie_count--;
+	}
+
+
+
+
+
+
+
+	//左ステージの描画
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f, BLUE_MAPCHIP, array_left_map);
+
+	//右ステージの描画
+	map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f, PINK_MAPCHIP, array_right_map);
+
+
+
+
+
+
+
+
+
+
+	if (left_cookie_count > 0) {
+		Kill(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &left_ghost_x, &left_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
+		//左のゴーストの描画
+		Draw(left_ghost_x, left_ghost_y, 0xffffffff, left_ghost_tu, 0.125f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	}
+	else if(left_cookie_count == 0) {
+		
+		Die(left_pacman_x, left_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, left_ghost_x, left_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
+		//左のゴーストの描画
+		Draw(left_ghost_x, left_ghost_y, 0xffffffff, left_ghost_tu, 0.0f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	}
+	if (right_cookie_count > 0) {
+		Kill(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, &right_ghost_x, &right_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
+		//右のゴーストの描画
+		Draw(right_ghost_x, right_ghost_y, 0xffffffff, right_ghost_tu, 0.2f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	}
+	else if (right_cookie_count == 0) {
+		
+		Die(right_pacman_x, right_pacman_y, DRAW_WIDTH, DRAW_HEIGHT, right_ghost_x, right_ghost_y, DRAW_WIDTH, DRAW_HEIGHT);
+		//右のゴーストの描画
+		Draw(right_ghost_x, right_ghost_y, 0xffffffff, right_ghost_tu, 0.2f, 32, 32, 64.0f / 512.0f, 64.0f / 512.0f, GHOST);
+	}
+
+
+
 
 
 	
+	//左のパックマンの描画
+	Draw(left_pacman_x, left_pacman_y, 0xffffffff, pacman_tu, 0.0f, 32, 32, 0.25f, 0.5f, PACMAN, left_pacman_rotate);
+
+	//右のパックマンの描画
+	Draw(right_pacman_x, right_pacman_y, 0xffffffff, pacman_tu, 0.5f, 32, 32, 0.25f, 0.5f, PACMAN, right_pacman_rotate);
+
+
+
+
+
+
 	//リリースのフェーズへ
 	if (dx.KeyState[DIK_RETURN] == dx.PRESS) {
 		Phase = RELEASES;
@@ -305,6 +639,7 @@ void Game::Release() {
 	//リザルトシーンへ
 	scene = RESULT;
 }
+
 ///ゴーストもできるように改善の余地あり
 //パックマンの当たり判定関数
 void Game::JudgeCollision(float* x,float* y,float start_x,float start_y,int row_,int col_,float draw_width,float draw_height,KEY *key,KEY *savekey,KEY* rotate_key,int** map) {
@@ -494,4 +829,47 @@ void Game::Die(float player_x,float player_y,float player_width,float player_hei
 		Phase = RELEASES;
 		pacman_life = 1;
 	}
+}
+
+void Game::Eat(int** map,float ghost_x,float ghost_y,int* cookie,int* power_cookie) {
+	if (map[(int)(ghost_y / DRAW_HEIGHT)][(int)(ghost_x / DRAW_WIDTH)] == 35)
+	{
+		map[(int)(ghost_y / DRAW_HEIGHT)][(int)(ghost_x / DRAW_WIDTH)] = 0;
+		if (*power_cookie == 0) {
+			*cookie += 1;
+		}
+		if (*cookie == 80) {
+			*cookie = 0;
+			*power_cookie = 1;
+		}
+	}
+	if (map[(int)(ghost_y / DRAW_HEIGHT)][(int)(ghost_x / DRAW_WIDTH)] == 38)
+	{
+		map[(int)(ghost_y / DRAW_HEIGHT)][(int)(ghost_x / DRAW_WIDTH)] = 0;
+		*power_cookie = 1;
+	}
+
+	
+}
+
+void Pop() {
+
+
+
+
+};
+
+
+
+void Game::Kill(float player_x, float player_y, float player_width, float player_height, float* enemy_x, float* enemy_y, float enemy_width, float enemy_hieght) {
+
+	if ((player_x + player_width) > *enemy_x && player_x < (*enemy_x + enemy_width) && player_y < (*enemy_y + enemy_hieght) && (player_y + player_height) > *enemy_y) {
+		*enemy_x = 448;
+		*enemy_y = 448;
+	}
+	if (pacman_life == 0) {
+		Phase = RELEASES;
+		
+	}
+
 }
