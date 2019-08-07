@@ -33,6 +33,9 @@ public:
 	//　テクスチャ
 	LPDIRECT3DTEXTURE9 pTexture[TEX_MAX];
 
+	LPD3DXFONT pFont;//フォントオブジェクト
+
+
 	enum KEY_STATE {
 		PRESS,
 		RELEASE,

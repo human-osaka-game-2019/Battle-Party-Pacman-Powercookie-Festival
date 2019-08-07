@@ -48,7 +48,7 @@ public:
 
 
 	float left_pacman_x = 416.0f;
-	float left_pacman_y = 544.0f;
+	float left_pacman_y = 704.0f;
 	int left_pacman_degree = 0;
 	KEY left_pacman_rotate = KEY::STOP;
 	KEY left_pacman_key = KEY::STOP;
@@ -74,12 +74,10 @@ public:
 	float left_ghost_x_1 = 416.0f;
 	float left_ghost_y_1 = 352.0f;
 	
-
 	float right_ghost_x_2 = 448.0f + 960.f;
 	float right_ghost_y_2 = 352.0f;
 	float left_ghost_x_2 = 448.0f;
 	float left_ghost_y_2 = 352.0f;
-	
 
 	float right_ghost_x_3 = 384.0f + 960.f;
 	float right_ghost_y_3 = 352.0f;
@@ -91,6 +89,26 @@ public:
 	float left_ghost_x_4 = 352.0f;
 	float left_ghost_y_4 = 352.0f;
 	
+	float right_ghost_x_5 = 416.0f + 960.f;
+	float right_ghost_y_5 = 352.0f;
+	float left_ghost_x_5 = 416.0f;
+	float left_ghost_y_5 = 352.0f;
+
+
+	float right_ghost_x_6 = 448.0f + 960.f;
+	float right_ghost_y_6 = 352.0f;
+	float left_ghost_x_6 = 448.0f;
+	float left_ghost_y_6 = 352.0f;
+
+	float right_ghost_x_7 = 384.0f + 960.f;
+	float right_ghost_y_7 = 352.0f;
+	float left_ghost_x_7 = 384.0f;
+	float left_ghost_y_7 = 352.0f;
+
+	float right_ghost_x_8 = 352.0f + 960.f;
+	float right_ghost_y_8 = 352.0f;
+	float left_ghost_x_8 = 352.0f;
+	float left_ghost_y_8 = 352.0f;
 
 
 
@@ -159,22 +177,91 @@ public:
 	int left_ghostpop_4 = 0;
 	int right_ghostpop_4 = 0;
 
+	int left_ghost_row_5 = 0;
+	int left_ghost_col_5 = 0;
+	int right_ghost_row_5 = 0;
+	int right_ghost_col_5 = 0;
+	float ghostmove_x_5 = 0;
+	float ghostmove_y_5 = 0;
+	KEY left_ghost_key_5 = KEY::STOP;
+	KEY right_ghost_key_5 = KEY::STOP;
+	KEY left_ghost_savekey_5 = KEY::STOP;
+	KEY right_ghost_savekey_5 = KEY::STOP;
+	KEY left_ghost_rotate_5 = KEY::STOP;
+	KEY right_ghost_rotate_5 = KEY::STOP;
+	int left_ghostpop_5 = 0;
+	int right_ghostpop_5 = 0;
+
+	int left_ghost_row_6 = 0;
+	int left_ghost_col_6 = 0;
+	int right_ghost_row_6 = 0;
+	int right_ghost_col_6 = 0;
+	float ghostmove_x_6 = 0;
+	float ghostmove_y_6 = 0;
+	KEY left_ghost_key_6 = KEY::STOP;
+	KEY right_ghost_key_6 = KEY::STOP;
+	KEY left_ghost_savekey_6 = KEY::STOP;
+	KEY right_ghost_savekey_6 = KEY::STOP;
+	KEY left_ghost_rotate_6 = KEY::STOP;
+	KEY right_ghost_rotate_6 = KEY::STOP;
+	int left_ghostpop_6 = 0;
+	int right_ghostpop_6 = 0;
+
+	int left_ghost_row_7 = 0;
+	int left_ghost_col_7 = 0;
+	int right_ghost_row_7 = 0;
+	int right_ghost_col_7 = 0;
+	float ghostmove_x_7 = 0;
+	float ghostmove_y_7 = 0;
+	KEY left_ghost_key_7 = KEY::STOP;
+	KEY right_ghost_key_7 = KEY::STOP;
+	KEY left_ghost_savekey_7 = KEY::STOP;
+	KEY right_ghost_savekey_7 = KEY::STOP;
+	KEY left_ghost_rotate_7 = KEY::STOP;
+	KEY right_ghost_rotate_7 = KEY::STOP;
+	int left_ghostpop_7 = 0;
+	int right_ghostpop_7 = 0;
+
+	int left_ghost_row_8 = 0;
+	int left_ghost_col_8 = 0;
+	int right_ghost_row_8 = 0;
+	int right_ghost_col_8 = 0;
+	float ghostmove_x_8 = 0;
+	float ghostmove_y_8 = 0;
+	KEY left_ghost_key_8 = KEY::STOP;
+	KEY right_ghost_key_8 = KEY::STOP;
+	KEY left_ghost_savekey_8 = KEY::STOP;
+	KEY right_ghost_savekey_8 = KEY::STOP;
+	KEY left_ghost_rotate_8 = KEY::STOP;
+	KEY right_ghost_rotate_8 = KEY::STOP;
+	int left_ghostpop_8 = 0;
+	int right_ghostpop_8 = 0;
 
 
 
-	int left_ghost_move_1 = 3;
-	int right_ghost_move_1 = 3;
+	int left_ghost_move_1 = 0;
+	int right_ghost_move_1 = 0;
 
-	int left_ghost_move_2 = 3;
-	int right_ghost_move_2 = 3;
+	int left_ghost_move_2 = 1;
+	int right_ghost_move_2 = 1;
 
-	int left_ghost_move_3 = 3;
-	int right_ghost_move_3 = 3;
+	int left_ghost_move_3 = 2;
+	int right_ghost_move_3 = 2;
 
 	int left_ghost_move_4 = 3;
 	int right_ghost_move_4 = 3;
 
+	int left_ghost_move_5 = 0;
+	int right_ghost_move_5 = 0;
 
+	int left_ghost_move_6 = 1;
+	int right_ghost_move_6 = 1;
+
+	int left_ghost_move_7 = 2;
+	int right_ghost_move_7 = 2;
+
+	int left_ghost_move_8 = 3;
+	int right_ghost_move_8 = 3;
 
 
 	int left_cookie = 0;
@@ -186,8 +273,28 @@ public:
 	int right_cookie_count = 0;
 	int left_cookie_count = 0;
 
+	int repop_cookie_time = 0;
+
+	int eating_cookie[100][2];
+	int eating_cookie_Val = 0;
+	int eating_cookie_Num = 0;
+
+	int eating_power_cookie[4][2];
+	int eating_power_cookie_Val = 0;
+	int eating_power_cookie_Num = 0;
+
+	int repop_cookie_count[100];
+	int repop_power_cookie_count[20];
+	int** pcookie;
 	
-	
+
+	float countdown_tu = 0.0f;
+	float countdown_tv = 0.0f;
+	int flamecount_a = 0;
+	int flamecount_b = 0;
+
+
+	char buf[256];
 
 
 	Game::SCENE_PAHSE Phase = Game::LOAD;
@@ -203,10 +310,17 @@ public:
 	//パックマンが死ぬ処理
 	void Die(float player_x, float player_y, float player_width, float player_height, float enemy_x, float enemy_y, float enemy_width, float enemy_hieght, int pacman_life);
 
-	void Kill(float player_x, float player_y, float player_width, float player_height, float* enemy_x, float* enemy_y, float enemy_width, float enemy_hieght, float start_x, int* enemy_pop);
+	void Right_Kill(float player_x, float player_y, float player_width, float player_height, float* enemy_x, float* enemy_y, float enemy_width, float enemy_hieght, float start_x, int* enemy_pop);
 
-	void Eat(int** map, float ghost_x, float ghost_y,int* cookie, int* power_cookie);
+	void Left_Kill(float player_x, float player_y, float player_width, float player_height, float* enemy_x, float* enemy_y, float enemy_width, float enemy_hieght, float start_x, int* enemy_pop);
+
+
+	void Eat(int** map, float ghost_x, float ghost_y, int* cookie, int* power_cookie);
 
 	void Pop(float enemy_x, float* enemy_y, int* enemy_pop);
+
+	void Repop(int** map, int cookie);
+
+
 };
 #endif

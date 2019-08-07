@@ -20,7 +20,7 @@ void Help::Help_Scene() {
 //ヘルプのテクスチャの読み込み
 void Help::Loading() {
 
-	LoadTexture("Help_Back.png", HELP_BACK);
+	LoadTexture("help.png", HELP_BACK);
 
 	Phase = PROCESSING;
 }

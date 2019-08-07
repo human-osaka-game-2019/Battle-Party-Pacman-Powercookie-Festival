@@ -38,7 +38,10 @@ void Title::Loading() {
 	title_select_ui_tu_a = 0.5f;
 	title_select_ui_tu_b = 0.0f;
 	title_select_ui_tu_c = 0.0f;
+	nextscene = GAME;
+
 	Phase = PROCESSING;
+
 }
 
 //タイトルの描画処理
@@ -56,6 +59,10 @@ void Title::Process() {
 	Draw(750, 850, 0xffffffff, title_select_ui_tu_b, 0.25f, 320, 80, 0.5f, 0.25f, TITLE_SELECT_UI);
 	Draw(750, 920, 0xffffffff, title_select_ui_tu_c, 0.5f, 320, 80, 0.5f, 0.25f, TITLE_SELECT_UI);
 	Draw(770, pacman_y, 0xffffffff, title_pacman_tu, 0.0f, 50, 50, 0.25f, 1.0f, TITLE_PACMAN);
+
+	Draw(0, 600, 0xffffff,0.0f, 0.0f, 800, 200, 1 / 20, 1 / 2, GAUGE);
+
+	Draw(960, 600, 0xffffff, 0.0f, 0.5f, 800, 200, 1 / 20, 1 / 2, GAUGE);
 
 	if (flamecount_pacman >= 6)
 	{
@@ -130,6 +137,7 @@ void Title::Release() {
 			dx.pTexture[i] = nullptr;
 		}
 	}
+
 	if (nextscene == GAME) {
 		scene = GAME;
 	}
