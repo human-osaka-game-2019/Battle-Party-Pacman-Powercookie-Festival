@@ -22,8 +22,8 @@ enum TEX {
 	HELP_BACK,
 	GAME_BACK,
 	RESULT_BACK,
-	PACMAN,
-	GHOST,
+	PACMAN_,
+	GHOST_,
 	COOKIE,
 	POWER_COOKIE,
 	GAUGE,
@@ -35,6 +35,8 @@ enum TEX {
 	RESULT_BACK_LEFT_PLAYER,
 	COUNTDOWN_BLUE,
 	COUNTDOWN_PINK,
+	COUNTDOWN,
+	TEXTURE,
 };
 
 enum SCENE {
@@ -65,9 +67,14 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* API_NAME);
 void Mainloop(MSG* msg);
 
 //描画関数
-void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, double degree = 0.0f);
+void Draw(FLOAT x, FLOAT y, DWORD color,FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture,DOUBLE degree = 0.0f, FLOAT scall_x = 0.0f, FLOAT scall_y = 0.0f, FLOAT origin_x = 0.0f, FLOAT origin_y = 0.0f);
 
 //テクスチャを読み込む
 void LoadTexture(const char* file_name,int TEX);
+
+DWORD WINAPI Thread(HWND hWnd, LPVOID* data);
+
+VOID Load();
+
 
 #endif

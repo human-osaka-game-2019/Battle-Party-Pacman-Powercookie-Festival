@@ -186,7 +186,7 @@ void DirectX::All_Release() {
 	pDirect3D = nullptr;
 }
 
-double DirectX::to_Rad(double degree) {
-
+double DirectX::to_Rad(double degree)
+{
 	return degree * atan(1.0) * 4.0 / 180.0;
 }

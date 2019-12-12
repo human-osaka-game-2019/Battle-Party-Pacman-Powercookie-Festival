@@ -27,6 +27,13 @@ public:
 	
 	void textureprint(int drawpos_x,int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y,float width_num,float height_num, int texture);
 
+	void InitMap();
+
+
+
+
+
+
  int left_map[31][28] = 
 {  5,   2,	 2,	 2,	 2,	 2,	 2,	 2,	 2,	 2,	 2,	 2,	 2,	25,	26,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,	 2,	 6,
    1,  35,	35,	35,	35,	35,	35,	35,	35, 35,	35,	35,	35,	11,	 9,	35,	35,	35,	35,	35,	35,	35,	35,	35,	35,	35,	35,	 3,

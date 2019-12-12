@@ -120,6 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -137,6 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -146,17 +148,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Mapchip.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="Mapchip.h" />
+    <ClInclude Include="Pacman.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="DirectX.h" />
