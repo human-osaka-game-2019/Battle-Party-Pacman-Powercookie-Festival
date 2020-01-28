@@ -10,14 +10,7 @@
 #include <time.h>
 #include <vector>
 
-#define MAP_SIZE_WIDTH (28.f)		// MAPの横幅(値はチップ数)
-#define MAP_SIZE_HEIGHT (31.f)	// MAPの縦幅(値はチップ数)
-#define MAPCHIP_WIDTH (32.f)		// マップチップの横幅
-#define MAPCHIP_HEIGHT (32.f)		// マップチップの縦幅
-#define TEXTURE_WIDTH (256.f)     // 読み込んだテクスチャの横幅
-#define TEXTURE_HEIGHT (256.f)    // 読み込んだテクスチャの縦幅
-#define DRAW_WIDTH (32.f)         // 描画する横幅
-#define DRAW_HEIGHT (32.f)        // 描画する縦幅
+
 
 
 class Game {

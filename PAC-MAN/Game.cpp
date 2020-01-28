@@ -59,7 +59,10 @@ void Game::Loading() {
 //ゲームの描画と動き
 void Game::Process() 
 {
-
+	for (int i = 0;i < 2;i++)
+	{
+		pacman[i].Update();
+	}
 
 	fc_pacman++;
 	fc_countdown++;
@@ -143,8 +146,8 @@ void Game::Process()
 
 
 		//左ステージの描画
-		map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 0.0f, 0.0f, BLUE_MAPCHIP, array_left_map);
-		map.DrawMapChip(MAP_SIZE_WIDTH, MAP_SIZE_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, DRAW_WIDTH, DRAW_HEIGHT, 960.f, 0.0f, PINK_MAPCHIP, array_right_map);
+		map.DrawMapchip( 0.0f, 0.0f, BLUE_MAPCHIP, array_left_map);
+		map.DrawMapchip( 960.f, 0.0f, PINK_MAPCHIP, array_right_map);
 
 
 

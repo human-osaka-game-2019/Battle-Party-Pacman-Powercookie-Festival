@@ -48,74 +48,22 @@ int MapchipLoading::textureprint(int** F, int s, int d)
 	return 0;
 }
 
+static const int WORLD_VERTICAL_NUM = 31;
+static const int WORLD_HORIZONTAL_NUM = 28;
+static const float CHIP_SIZE = 32;
+static const float TEXTURE_WIDTH = 256;
+static const float TEXTURE_HEIGHT = 256;
+static const float CHIP_WIDTH_NUM = TEXTURE_WIDTH / 8;
+static const float CHIP_HEIGHT_NUM = TEXTURE_HEIGHT / 8;
+static const int HORIZONTAL_NUM = TEXTURE_WIDTH / CHIP_WIDTH_NUM;
+static const int VERTICAL_NUM = TEXTURE_HEIGHT / CHIP_HEIGHT_NUM;
 
 
-
-
-
-//
-//
-//
-////640
-//void DrawMap::DrawMapChip()
-//{
-//	for (int i = 0; i < MAP_SIZE_HEIGHT; i++)
-//	{
-//		for (int j = 0; j < MAP_SIZE_WIDTH; j++)
-//		{
-//			int chip_id = a[i][j];
-//			if (chip_id == 0)
-//			{
-//				continue;
-//			}
-//
-//			// テクスチャのサイズとマップチップのサイズから横と縦のチップ数を割り出す
-//			// (int)g_TextureList[TextureId::MapChip].m_Width       テクスチャのwidth
-//			//(int)g_TextureList[TextureId::MapChip].m_Height       テクスチャのheight
-//			//MAPCHIP_WIDTH                                         マップチップの１つのwidth大きさ
-//			//MAPCHIP_HEIGHT                                        マップチップの１つのheight大きさ
-//			int width_num = TEXTURE_WIDTH / MAPCHIP_WIDTH;
-//			int height_num = TEXTURE_HEIGHT / MAPCHIP_HEIGHT;
-//
-//			////表示したい一つのtextureの大きさ
-//			//float y = (float)(TEXTURE_CHIP_WIDTH / MAPCHIP_WIDTH);
-//			//float u = (float)(TEXTURE_CHIP_HEIGHT / MAPCHIP_HEIGHT);
-//
-//			// chip_idからチップのテクスチャ座標を割り出す
-//			// チップの描画
-//			//chip_pos_x                                            左上のtuの位置
-//			//chip_pos_y                                            左上のtvの位置
-//			//MAPCHIP_WIDTH                                         一マスのwidth大きさ
-//			//MAPCHIP_HEIGHT                                        一マスのheight大きさ
-//			float chip_pos_x = (float)(chip_id % width_num) * MAPCHIP_WIDTH;
-//			float chip_pos_y = (float)(chip_id / height_num) * MAPCHIP_HEIGHT;
-//
-//			DrawMap::tetureprint(MAPCHIP_WIDTH * j, MAPCHIP_HEIGHT * i,MAPCHIP_WIDTH,MAPCHIP_HEIGHT,chip_pos_x / TEXTURE_WIDTH,chip_pos_y / TEXTURE_HEIGHT, MAPCHIP_WIDTH / TEXTURE_WIDTH, MAPCHIP_HEIGHT / TEXTURE_HEIGHT);
-//		}
-//	}
-//}
-//
-////マップチップ描画
-//int DrawMap::tetureprint(int drawpos_x,int drawpos_y,int mapcip_width,int mapchip_height,float chip_pos_x,float chip_pos_y,float width_num,float height_num) {
-//	
-//			Draw( drawpos_x, drawpos_y,0xffffffff,chip_pos_x,chip_pos_y,mapcip_width,mapchip_height,width_num,height_num,TEST_MAPCHIP);
-//		
-//	return 0;
-//}
-//
-//
-//
-
-
-
-
-
-
-void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_width,float texture_height,float mapchip_width,float mapchip_height,float draw_width,float draw_height,float draw_pos_x,float draw_pos_y, int texture,int** map)
+void DrawMap::DrawMapchip(float draw_start_pos_x, float draw_start_pos_y, int texturename, int** map)
 {
-	for (int i = 0; i < map_size_height; i++)
+	for (int i = 0; i < WORLD_VERTICAL_NUM; i++)
 	{
-		for (int j = 0; j < map_size_width; j++)
+		for (int j = 0; j < WORLD_HORIZONTAL_NUM; j++)
 		{
 			int chip_id = map[i][j];
 			if (chip_id == 0)
@@ -123,34 +71,20 @@ void DrawMap::DrawMapChip(int map_size_width,int map_size_height,float texture_w
 				continue;
 			}
 
-			// テクスチャのサイズとマップチップのサイズから横と縦のチップ数を割り出す
-			// (int)g_TextureList[TextureId::MapChip].m_Width       テクスチャのwidth
-			//(int)g_TextureList[TextureId::MapChip].m_Height       テクスチャのheight
-			//MAPCHIP_WIDTH                                         マップチップの１つのwidth大きさ
-			//MAPCHIP_HEIGHT                                        マップチップの１つのheight大きさ
-			int width_num = texture_width / mapchip_width;
-			int height_num = texture_height / mapchip_height;
+			float draw_pos_x = draw_start_pos_x + CHIP_SIZE * j;
+			float draw_pos_y = draw_start_pos_y + CHIP_SIZE * i;
 
-			// chip_idからチップのテクスチャ座標を割り出す
-			// チップの描画
-			//chip_pos_x                                            左上のtuの位置
-			//chip_pos_y                                            左上のtvの位置
-			//MAPCHIP_WIDTH                                         一マスのwidth大きさ
-			//MAPCHIP_HEIGHT                                        一マスのheight大きさ
-			float chip_pos_x = (float)(chip_id % width_num) * mapchip_width;
-			float chip_pos_y = (float)(chip_id / height_num) * mapchip_height;
+			float tu = (chip_id % HORIZONTAL_NUM) * CHIP_WIDTH_NUM / TEXTURE_WIDTH;
+			float tv = (chip_id / VERTICAL_NUM) * CHIP_HEIGHT_NUM / TEXTURE_HEIGHT;
 
-			DrawMap::textureprint(draw_pos_x + draw_width * j, draw_pos_y + draw_height * i, draw_width, draw_height, chip_pos_x / texture_width, chip_pos_y / texture_height, mapchip_width / texture_width, mapchip_height / texture_height,texture);
+			float tu_width = static_cast<float>((CHIP_WIDTH_NUM) / TEXTURE_WIDTH);
+			float tv_height = static_cast<float>((CHIP_HEIGHT_NUM) / TEXTURE_HEIGHT);
+
+			Draw(draw_pos_x, draw_pos_y, 0xffffffff, tu, tv,CHIP_SIZE, CHIP_SIZE, tu_width, tv_height, texturename);
 		}
 	}
 }
 
-//マップチップ描画
-void DrawMap::textureprint(int drawpos_x, int drawpos_y, int mapcip_width, int mapchip_height, float chip_pos_x, float chip_pos_y, float width_num, float height_num,int texture) {
-
-	Draw(drawpos_x, drawpos_y, 0xffffffff, chip_pos_x, chip_pos_y, mapcip_width, mapchip_height, width_num, height_num, texture,0);
-
-}
 
 
 void DrawMap::InitMap()
