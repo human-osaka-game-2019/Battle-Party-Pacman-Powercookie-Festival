@@ -7,19 +7,12 @@ class Pacman:public Character
 {
 public:
 
-	Pacman()
-	{
-		Init();
-	}
+	Pacman() {}
 
-	virtual void Init() override;
+	virtual void Init(float X, float Y) override;
 
 	virtual void Update() override;
 	virtual void Move() override;
-
-
-
-
 
 	int degree;
 	int life;

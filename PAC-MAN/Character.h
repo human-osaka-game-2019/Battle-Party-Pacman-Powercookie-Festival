@@ -7,7 +7,7 @@ class Character
 {
 public:
 
-	virtual void Init() = 0;
+	virtual void Init(float X, float Y) = 0;
 
 	virtual void Update() = 0;
 

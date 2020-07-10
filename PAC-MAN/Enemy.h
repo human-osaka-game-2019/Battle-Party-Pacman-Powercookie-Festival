@@ -8,7 +8,7 @@ class Enemy :public Character
 {
 public:
 
-	virtual void Init() override;
+	virtual void Init(float X, float Y) override;
 
 	virtual void Update() override;
 

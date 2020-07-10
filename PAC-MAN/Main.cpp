@@ -452,7 +452,7 @@ DWORD WINAPI Thread(HWND hWnd, LPVOID* data)
 
 	LoadTexture("pacman_stage_blue.png", BLUE_MAPCHIP);
 	LoadTexture("pacman_stage_pink.png", PINK_MAPCHIP);
-	LoadTexture("pacman.png", PACMAN_);
+	LoadTexture("pacman.png", PACMAN);
 	LoadTexture("Ghost.png", GHOST_);
 	LoadTexture("GameBack.png", GAME_BACK);
 	LoadTexture("gauge.png", GAUGE);

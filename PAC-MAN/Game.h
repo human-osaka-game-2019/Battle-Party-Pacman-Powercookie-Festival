@@ -42,7 +42,8 @@ public:
 
 	
 
-	Pacman pacman[2];
+	Pacman pacman1p;
+	Pacman pacman2p;
 
 	std::vector<Enemy> ghost;
 

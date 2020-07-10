@@ -22,7 +22,6 @@ void Game::Game_Scene() {
 		break;
 	case RELEASES:
 		Release();
-		Phase = LOAD;
 		break;
 	}
 }
@@ -49,9 +48,8 @@ void Game::Loading() {
 	fc_countdown = 0;
 
 
-
-
-
+	pacman1p.Init(416.0f, 736.f);
+	pacman2p.Init(416.0f + 960.f, 736.f);
 
 	Phase = PROCESSING;
 }
@@ -59,10 +57,8 @@ void Game::Loading() {
 //ゲームの描画と動き
 void Game::Process() 
 {
-	for (int i = 0;i < 2;i++)
-	{
-		pacman[i].Update();
-	}
+	pacman1p.Update();
+	pacman2p.Update();
 
 	fc_pacman++;
 	fc_countdown++;
@@ -73,10 +69,15 @@ void Game::Process()
 		for (int i = 0; i < 2; i++)
 		{
 			if (fc_pacman % 6 == 0) {
-				pacman[i].tu += 0.25f;
+				pacman1p.tu += 0.25f;
+				pacman2p.tu += 0.25f;
 			}
-			if (1.0f <= pacman[i].tu) {
-				pacman[i].tu = 0.0f;
+			if (1.0f <= pacman1p.tu) {
+				pacman1p.tu = 0.0f;
+			}
+			if (1.0f <= pacman2p.tu)
+			{
+				pacman2p.tu = 0.0f;
 			}
 		}
 
@@ -150,13 +151,11 @@ void Game::Process()
 		map.DrawMapchip( 960.f, 0.0f, PINK_MAPCHIP, array_right_map);
 
 
-
-
 		//パックマン描画
-		for (int i = 0; i < 2; i++)
-		{
-			Draw(pacman[i].x, pacman[i].y, 0xffffffff, pacman[i].tu, 0.0f + (0.5 * i), 32, 32, 0.25f, 0.5f, PACMAN_, pacman[i].degree);
-		}
+		Draw(pacman1p.x, pacman1p.y, 0xffffffff, pacman1p.tu, 0.0f, 32, 32, 0.25f, 0.5f, PACMAN, pacman1p.degree);
+		Draw(pacman2p.x, pacman2p.y, 0xffffffff, pacman2p.tu, 0.5f, 32, 32, 0.25f, 0.5f, PACMAN, pacman2p.degree);
+
+	
 	}
 }
 
@@ -171,6 +170,7 @@ void Game::Release()
 			dx.pTexture[i] = nullptr;
 		}
 	}
+	Phase = LOAD;
 	//リザルトシーンへ
 	scene = RESULT;
 }

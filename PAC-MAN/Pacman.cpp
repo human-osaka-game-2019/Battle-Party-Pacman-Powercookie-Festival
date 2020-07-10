@@ -1,28 +1,36 @@
 ﻿#include "Pacman.h"
 
-void Pacman::Init()
+void Pacman::Init(float X,float Y)
 {
 
+	x = X;
+	y = Y;
 
-
-
-
-	//パックマン初期化
-	/*	416.0f + (960 * i),
-		736.0f,
-		0.0f,
-		0.0f,
-		0,
-		0,
-		90,
-		KEY::STOP,
-		KEY::STOP,
-		1,*/
 }
 
 void Pacman::Update()
 {
 	Move();
+
+	switch(next_movekey)
+	{
+	case KEY::UP:
+		y -= 2;
+		break;
+	case KEY::DOWN:
+		y += 2;
+		break;
+	case KEY::LEFT:
+		x -= 2;
+		break;
+	case KEY::RIGHT:
+		x += 2;
+		break;
+	case KEY::STOP:
+		break;
+	default:
+		break;
+	}
 }
 
 void Pacman::Move()

@@ -2,7 +2,7 @@
 
 
 
-void Enemy::Init()
+void Enemy::Init(float X, float Y)
 {
 
 	//ゴースト初期化
